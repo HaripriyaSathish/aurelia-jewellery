@@ -8,7 +8,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-aurelia-jewellery-luxury-key-default-2026')
 
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -43,7 +43,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'aurelia_backend.urls'
 
-# Frontend build directory
 FRONTEND_DIST = os.path.join(BASE_DIR.parent, 'frontend', 'dist')
 
 TEMPLATES = [
@@ -94,9 +93,10 @@ STATICFILES_DIRS = []
 if os.path.exists(FRONTEND_DIST):
     STATICFILES_DIRS.append(FRONTEND_DIST)
 
-# WhiteNoise static configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# WhiteNoise Configuration for serving static and root assets
+WHITENOISE_ROOT = FRONTEND_DIST
 WHITENOISE_INDEX_FILE = True
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -118,7 +118,7 @@ REST_FRAMEWORK = {
 }
 
 # Email Settings
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
