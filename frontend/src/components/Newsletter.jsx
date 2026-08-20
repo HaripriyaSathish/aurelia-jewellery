@@ -48,7 +48,7 @@ export default function Newsletter() {
           A Little More Brilliance
         </h2>
 
-        <p className="text-xs sm:text-sm text-[#E8DDCD]/80 font-light max-w-lg mx-auto mb-6 font-cormorant text-base italic leading-relaxed">
+        <p className="text-sm sm:text-base text-[#E8DDCD]/80 font-normal max-w-lg mx-auto mb-6 font-cormorant text-lg italic leading-relaxed">
           Be the first to receive invitations to private salon exhibitions, bespoke high jewellery releases, and private maison journals.
         </p>
 
@@ -65,12 +65,12 @@ export default function Newsletter() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Enter your email address..."
-              className="flex-1 px-3.5 py-3 bg-white/5 border border-[#E8DDCD]/30 text-xs text-white placeholder-[#E8DDCD]/50 focus:outline-none focus:border-[#B8945A] transition-colors backdrop-blur-sm"
+              className="flex-1 px-3.5 py-3 bg-white/5 border border-[#E8DDCD]/30 text-sm text-white placeholder-[#E8DDCD]/50 focus:outline-none focus:border-[#B8945A] transition-colors backdrop-blur-sm"
             />
             <button
               type="submit"
               disabled={loading}
-              className="px-7 py-3 bg-[#B8945A] hover:bg-[#a38048] text-white text-xs font-semibold tracking-[0.25em] uppercase transition-all duration-300 shadow-md disabled:opacity-50 flex-shrink-0"
+              className="px-7 py-3 bg-[#B8945A] hover:bg-[#a38048] text-white text-sm font-semibold tracking-[0.25em] uppercase transition-all duration-300 shadow-md disabled:opacity-50 flex-shrink-0"
             >
               {loading ? 'JOINING...' : 'SUBSCRIBE'}
             </button>

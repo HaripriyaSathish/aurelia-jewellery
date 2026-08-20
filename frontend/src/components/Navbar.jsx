@@ -86,7 +86,7 @@ export default function Navbar({
                 AURELIA
               </span>
               <span
-                className={`block text-[8px] sm:text-[9px] tracking-[0.45em] uppercase font-light -mt-0.5 transition-colors ${
+                className={`block text-[10px] sm:text-[11px] tracking-[0.45em] uppercase font-medium -mt-0.5 transition-colors ${
                   isScrolled ? 'text-[#746F68]' : 'text-white/75'
                 }`}
               >
@@ -178,7 +178,7 @@ export default function Navbar({
                   <span className="font-cinzel text-xl font-semibold tracking-[0.2em] text-[#1E1C1A]">
                     AURELIA
                   </span>
-                  <span className="block text-[8px] tracking-[0.35em] text-[#746F68] uppercase">
+                  <span className="block text-[10px] tracking-[0.35em] text-[#746F68] uppercase font-medium">
                     FINE JEWELLERY
                   </span>
                 </div>

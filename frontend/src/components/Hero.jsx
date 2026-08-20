@@ -39,7 +39,7 @@ export default function Hero({ heroData }) {
         </h1>
 
         {/* Description / Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl font-light text-[#E8DDCD]/90 max-w-2xl mx-auto mb-10 leading-relaxed font-cormorant italic tracking-wide">
+        <p className="text-lg sm:text-xl md:text-2xl font-normal text-[#E8DDCD]/90 max-w-2xl mx-auto mb-10 leading-relaxed font-cormorant italic tracking-wide">
           "{subtitle}"
         </p>
 

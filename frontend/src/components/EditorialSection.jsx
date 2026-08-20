@@ -49,7 +49,7 @@ export default function EditorialSection() {
               “Every piece begins with a story, shaped through exceptional craftsmanship and finished with a dedication to timeless beauty.”
             </p>
 
-            <p className="text-xs sm:text-sm text-[#746F68] font-light leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-[#746F68] font-normal leading-relaxed mb-6">
               At AURELIA, haute joaillerie is elevated beyond ornament into wearable artistry. Each mastercut stone is ethically sourced and meticulously set by master artisans who have preserved generational lapidary traditions, creating heirlooms that transcend time.
             </p>
 
@@ -57,16 +57,16 @@ export default function EditorialSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 border-t border-b border-[#E8DDCD]/80 py-4">
               <div className="flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#B8945A] flex-shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1E1C1A]">GIA & IGI Certified</h4>
-                  <p className="text-[11px] text-[#746F68]">Strict DEF colour & IF-VVS clarity stones.</p>
+                <div><h4 className="text-sm font-bold uppercase tracking-wider text-[#1E1C1A]">
+                  GIA & IGI Certified</h4>
+                  <p className="text-xs text-[#746F68] font-medium">Strict DEF colour & IF-VVS clarity stones.</p>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <Award className="w-4 h-4 text-[#B8945A] flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1E1C1A]">100% Conflict Free</h4>
-                  <p className="text-[11px] text-[#746F68]">Ethically mined & verified origin traceability.</p>
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-[#1E1C1A]">100% Conflict Free</h4>
+                  <p className="text-xs text-[#746F68] font-medium">Ethically mined & verified origin traceability.</p>
                 </div>
               </div>
             </div>

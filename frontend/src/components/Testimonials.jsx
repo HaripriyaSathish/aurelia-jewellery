@@ -49,7 +49,7 @@ export default function Testimonials({ testimonials = [] }) {
             Words of Adornment
           </h2>
 
-          <p className="text-sm sm:text-base text-[#746F68] font-light max-w-xl mx-auto font-cormorant text-xl italic">
+          <p className="text-sm sm:text-base text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
             Reflections from patrons, connoisseurs, and collectors who have made AURELIA a part of their legacy.
           </p>
         </div>

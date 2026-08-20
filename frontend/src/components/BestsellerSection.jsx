@@ -47,7 +47,7 @@ export default function BestsellerSection({
             Our Most Loved Pieces
           </h2>
 
-          <p className="text-sm sm:text-base text-[#746F68] font-light max-w-xl mx-auto font-cormorant text-xl italic">
+          <p className="text-sm sm:text-base text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
             Each creation is an embodiment of precision, balanced geometry, and rare luminescent stones.
           </p>
 
@@ -88,12 +88,12 @@ export default function BestsellerSection({
 
         {/* Bottom Editorial Callout */}
         <div className="mt-10 text-center">
-          <p className="text-xs text-[#746F68] uppercase tracking-[0.25em] font-light mb-2">
+          <p className="text-sm text-[#746F68] uppercase tracking-[0.25em] font-medium mb-2">
             BESPOKE COMMISSIONS & PRIVATE VAULT APPOINTMENTS AVAILABLE
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[#B8945A] uppercase border-b border-[#B8945A] pb-1 hover:text-[#1E1C1A] hover:border-[#1E1C1A] transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-bold tracking-[0.25em] text-[#B8945A] uppercase border-b border-[#B8945A] pb-1 hover:text-[#1E1C1A] hover:border-[#1E1C1A] transition-colors"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>BOOK A PRIVATE CONSULTATION</span>

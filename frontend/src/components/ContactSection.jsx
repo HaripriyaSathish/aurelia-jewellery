@@ -79,7 +79,7 @@ export default function ContactSection({ settings }) {
                 Begin Your Story With Us
               </h2>
 
-              <p className="text-xs sm:text-sm text-[#746F68] font-light leading-relaxed mb-6">
+              <p className="text-sm sm:text-base text-[#746F68] font-normal leading-relaxed mb-6">
                 Whether you are choosing a timeless piece, planning a special gift, or searching for something uniquely yours, our jewellery specialists are here to help.
               </p>
 
@@ -90,8 +90,8 @@ export default function ContactSection({ settings }) {
                     <Phone className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-[9px] text-[#746F68] uppercase tracking-wider block">Telephone:</span>
-                    <a href={`tel:${cleanPhone}`} className="text-xs font-medium text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
+                    <span className="text-[10px] text-[#746F68] uppercase tracking-wider block font-medium">Telephone:</span>
+                    <a href={`tel:${cleanPhone}`} className="text-sm font-medium text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
                       {phone}
                     </a>
                   </div>
@@ -103,7 +103,7 @@ export default function ContactSection({ settings }) {
                   </div>
                   <div>
                     <span className="text-[9px] text-[#746F68] uppercase tracking-wider block">WhatsApp Direct:</span>
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-[#1E1C1A] hover:text-[#25D366] transition-colors">
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-[#1E1C1A] hover:text-[#25D366] transition-colors">
                       {whatsapp}
                     </a>
                   </div>
@@ -115,7 +115,7 @@ export default function ContactSection({ settings }) {
                   </div>
                   <div>
                     <span className="text-[9px] text-[#746F68] uppercase tracking-wider block">Email:</span>
-                    <a href={`mailto:${email}`} className="text-xs font-medium text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
+                    <a href={`mailto:${email}`} className="text-sm font-medium text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
                       {email}
                     </a>
                   </div>
@@ -127,7 +127,7 @@ export default function ContactSection({ settings }) {
                   </div>
                   <div>
                     <span className="text-[9px] text-[#746F68] uppercase tracking-wider block">Boutique:</span>
-                    <span className="text-xs font-medium text-[#1E1C1A]">
+                    <span className="text-sm font-medium text-[#1E1C1A]">
                       {address}
                     </span>
                   </div>
@@ -139,7 +139,7 @@ export default function ContactSection({ settings }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
                 href={`tel:${cleanPhone}`}
-                className="py-3 px-4 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+                className="py-3 px-4 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-sm font-semibold tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
               >
                 <Phone className="w-3.5 h-3.5 text-[#E8DDCD]" />
                 <span>CALL US</span>
@@ -149,7 +149,7 @@ export default function ContactSection({ settings }) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+                className="py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
                 <span>CHAT ON WHATSAPP</span>
@@ -162,7 +162,7 @@ export default function ContactSection({ settings }) {
           <div className="lg:col-span-7 bg-[#F8F5F0] border border-[#E8DDCD] p-6 sm:p-9 shadow-sm">
             
             <div className="mb-6 pb-3 border-b border-[#E8DDCD]">
-              <span className="text-[9px] uppercase tracking-[0.3em] text-[#B8945A] font-semibold block mb-1">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8945A] font-semibold block mb-1">
                 ONLINE CONSULTATION & INQUIRY
               </span>
               <h3 className="font-serif text-xl sm:text-2xl text-[#1E1C1A] font-medium">
@@ -199,7 +199,7 @@ export default function ContactSection({ settings }) {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1">
                     Full Name *
                   </label>
                   <input
@@ -209,12 +209,12 @@ export default function ContactSection({ settings }) {
                     onChange={handleChange}
                     required
                     placeholder="e.g. Eleanor Vance"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-xs text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1">
                     Email Address *
                   </label>
                   <input
@@ -224,14 +224,14 @@ export default function ContactSection({ settings }) {
                     onChange={handleChange}
                     required
                     placeholder="e.g. eleanor@example.com"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-xs text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1">
                     Phone Number *
                   </label>
                   <input
@@ -241,12 +241,12 @@ export default function ContactSection({ settings }) {
                     onChange={handleChange}
                     required
                     placeholder="e.g. +91 98765 43210"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-xs text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1">
                     Subject / Interest
                   </label>
                   <input
@@ -255,13 +255,13 @@ export default function ContactSection({ settings }) {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="e.g. Diamond Solitaire / Bridal Suite"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-xs text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1">
                   Your Message or Consultation Details *
                 </label>
                 <textarea
@@ -271,14 +271,14 @@ export default function ContactSection({ settings }) {
                   required
                   rows="3"
                   placeholder="Kindly detail the creations, gemstones, or bespoke requirements you wish to explore..."
-                  className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-xs text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                  className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-xs font-semibold tracking-[0.25em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                className="w-full py-3.5 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-sm font-semibold tracking-[0.25em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
               >
                 {loading ? (
                   <span>SUBMITTING INQUIRY...</span>

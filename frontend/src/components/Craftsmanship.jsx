@@ -44,7 +44,7 @@ export default function Craftsmanship() {
             The Details Make the Difference
           </h2>
 
-          <p className="text-sm sm:text-base text-[#746F68] font-light max-w-xl mx-auto font-cormorant text-xl italic">
+          <p className="text-sm sm:text-base text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
             Behind every piece of AURELIA haute joaillerie lies hundreds of hours of patient artisan mastery.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function Craftsmanship() {
                         {pillar.subtitle}
                       </p>
 
-                      <p className="text-xs text-[#746F68] font-light leading-relaxed">
+                      <p className="text-sm text-[#746F68] font-normal leading-relaxed">
                         {pillar.description}
                       </p>
                     </div>
@@ -105,7 +105,7 @@ export default function Craftsmanship() {
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#B8945A]" />
                   <span>MASTER ATELIER INSPECTION</span>
                 </div>
-                <p className="text-[11px] text-[#746F68]">
+                <p className="text-xs text-[#746F68] font-medium">
                   Every prong is hand-adjusted under 40x magnification for zero gemstone movement and flawless fire.
                 </p>
               </div>

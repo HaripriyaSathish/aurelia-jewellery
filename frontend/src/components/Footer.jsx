@@ -23,7 +23,7 @@ export default function Footer({ settings }) {
             <span className="font-cinzel text-xl sm:text-2xl font-semibold tracking-[0.3em] text-white block">
               AURELIA
             </span>
-            <span className="text-[9px] tracking-[0.45em] uppercase text-[#B8945A] block mt-0.5 font-light">
+            <span className="text-[10px] tracking-[0.45em] uppercase text-[#B8945A] block mt-0.5 font-medium">
               FINE JEWELLERY • HAUTE JOAILLERIE
             </span>
           </div>
@@ -79,7 +79,7 @@ export default function Footer({ settings }) {
         </div>
 
         {/* 4 Footer Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-b border-[#E8DDCD]/15 text-xs font-light">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-b border-[#E8DDCD]/15 text-sm font-normal">
           
           {/* Col 1: Shop */}
           <div>
@@ -196,7 +196,7 @@ export default function Footer({ settings }) {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[10px] text-[#E8DDCD]/50 tracking-[0.2em] uppercase gap-3">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E8DDCD]/60 tracking-[0.2em] uppercase font-medium gap-3">
           <div>
             © 2026 AURELIA FINE JEWELLERY. ALL RIGHTS RESERVED.
           </div>
