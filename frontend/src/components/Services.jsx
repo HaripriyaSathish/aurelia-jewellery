@@ -47,7 +47,7 @@ export default function Services() {
             A World of Extraordinary Service
           </h2>
 
-          <p className="text-sm text-[#746F68] font-light max-w-xl mx-auto font-cormorant text-lg italic">
+          <p className="text-sm text-[#746F68] font-light max-w-xl mx-auto font-cormorant text-xl italic">
             Your journey with AURELIA extends far beyond the moment of acquisition.
           </p>
         </div>
