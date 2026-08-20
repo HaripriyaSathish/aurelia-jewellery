@@ -44,7 +44,7 @@ export default function Craftsmanship() {
             The Details Make the Difference
           </h2>
 
-          <p className="text-sm sm:text-base text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
+          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Behind every piece of AURELIA haute joaillerie lies hundreds of hours of patient artisan mastery.
           </p>
         </div>

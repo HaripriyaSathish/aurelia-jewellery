@@ -33,7 +33,7 @@ export default function MapSection({ settings }) {
             Visit Our Boutique
           </h2>
 
-          <p className="text-sm sm:text-base text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
+          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Experience our private diamond salon and preview high jewellery creations in person.
           </p>
         </div>

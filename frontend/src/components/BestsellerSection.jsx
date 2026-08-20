@@ -47,7 +47,7 @@ export default function BestsellerSection({
             Our Most Loved Pieces
           </h2>
 
-          <p className="text-sm sm:text-base text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
+          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Each creation is an embodiment of precision, balanced geometry, and rare luminescent stones.
           </p>
 
