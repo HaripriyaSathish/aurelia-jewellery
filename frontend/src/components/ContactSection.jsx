@@ -90,7 +90,7 @@ export default function ContactSection({ settings }) {
                     <Phone className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-semibold">Telephone:</span>
+                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">Telephone:</span>
                     <a href={`tel:${cleanPhone}`} className="text-sm font-bold text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
                       {phone}
                     </a>
@@ -102,7 +102,7 @@ export default function ContactSection({ settings }) {
                     <MessageCircle className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-semibold">WhatsApp Direct:</span>
+                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">WhatsApp Direct:</span>
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#1E1C1A] hover:text-[#25D366] transition-colors">
                       {whatsapp}
                     </a>
@@ -114,7 +114,7 @@ export default function ContactSection({ settings }) {
                     <Mail className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-semibold">Email:</span>
+                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">Email:</span>
                     <a href={`mailto:${email}`} className="text-sm font-bold text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
                       {email}
                     </a>
@@ -126,7 +126,7 @@ export default function ContactSection({ settings }) {
                     <MapPin className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-semibold">Boutique:</span>
+                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">Boutique:</span>
                     <span className="text-sm font-bold text-[#1E1C1A]">
                       {address}
                     </span>
