@@ -61,10 +61,10 @@ export default function Navbar({
           {/* Left: Logo */}
           <div className="flex items-center">
             <a href="#home" className="inline-flex items-center group">
-              <img
+                <img
                 src={logoImg}
                 alt="Vetri Jewelers"
-                className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </a>
           </div>
@@ -167,7 +167,7 @@ export default function Navbar({
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#E8DDCD]">
                 <div>
-                  <img src={logoImg} alt="Vetri Jewelers" className="h-12 w-auto object-contain" />
+                  <img src={logoImg} alt="Vetri Jewelers" className="h-16 w-auto object-contain" />
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
