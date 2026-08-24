@@ -69,9 +69,9 @@ export default function Navbar({
             </a>
           </div>
 
-          {/* Centered Desktop Navigation Links */}
+                   {/* Centered Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.slice(0, 3).map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -87,24 +87,8 @@ export default function Navbar({
             ))}
           </nav>
 
-          {/* Desktop Navigation Links (Right) & Actions */}
+          {/* Actions */}
           <div className="flex items-center space-x-5 sm:space-x-7">
-            <nav className="hidden lg:flex items-center space-x-8 mr-3">
-              {navLinks.slice(3).map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`text-[12px] font-medium tracking-[0.25em] transition-all duration-300 relative group py-1 ${
-                    isScrolled
-                      ? 'text-[#1E1C1A] hover:text-[#B8945A]'
-                      : 'text-white/90 hover:text-white'
-                  }`}
-                >
-                  {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B8945A] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ))}
-            </nav>
 
             {/* Search Trigger */}
             <button
