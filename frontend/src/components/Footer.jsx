@@ -21,10 +21,10 @@ export default function Footer({ settings }) {
         <div className="flex flex-col md:flex-row items-center justify-between pb-8 border-b border-[#E8DDCD]/15 gap-6">
           <div className="text-center md:text-left">
             <span className="font-cinzel text-xl sm:text-2xl font-semibold tracking-[0.3em] text-white block">
-              AURELIA
+              VETRI
             </span>
             <span className="text-[10px] tracking-[0.45em] uppercase text-[#B8945A] block mt-0.5 font-medium">
-              FINE JEWELLERY • HAUTE JOAILLERIE
+              JEWELLERS — Timeless Beauty, Eternal You
             </span>
           </div>
 
@@ -198,7 +198,7 @@ export default function Footer({ settings }) {
         {/* Bottom Copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E8DDCD]/60 tracking-[0.2em] uppercase font-medium gap-3">
           <div>
-            © 2026 AURELIA FINE JEWELLERY. ALL RIGHTS RESERVED.
+            © 2026 VETRI JEWELLERS. ALL RIGHTS RESERVED.
           </div>
           <div className="flex gap-4 sm:gap-6">
             <span>Privacy Policy</span>
