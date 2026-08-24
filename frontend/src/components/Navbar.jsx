@@ -36,11 +36,11 @@ export default function Navbar({
 
   return (
     <>
-      <header
+            <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
-            ? 'bg-[#FFFDF9]/95 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.06)] border-b border-[#E8DDCD]/80 py-3.5'
-            : 'bg-gradient-to-b from-black/60 via-black/25 to-transparent text-white py-5'
+            ? 'bg-[#FFFDF9]/95 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.06)] border-b border-[#E8DDCD]/80 py-1.5'
+            : 'bg-gradient-to-b from-black/60 via-black/25 to-transparent text-white py-2'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
