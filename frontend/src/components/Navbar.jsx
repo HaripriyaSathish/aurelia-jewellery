@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Search, Heart, ShoppingBag, Menu, X, Phone, Compass } from 'lucide-react';
+import logoImg from '../assets/vetri-logo.jpg';
 
 export default function Navbar({
   wishlistCount = 0,
@@ -43,7 +44,7 @@ export default function Navbar({
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
+
           {/* Mobile Menu Button */}
           <div className="flex items-center lg:hidden">
             <button
@@ -57,7 +58,18 @@ export default function Navbar({
             </button>
           </div>
 
-          {/* Desktop Navigation Links (Left) */}
+          {/* Left: Logo */}
+          <div className="flex items-center">
+            <a href="#home" className="inline-flex items-center group">
+              <img
+                src={logoImg}
+                alt="Vetri Jewelers"
+                className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </a>
+          </div>
+
+          {/* Centered Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.slice(0, 3).map((link) => (
               <a
@@ -74,26 +86,6 @@ export default function Navbar({
               </a>
             ))}
           </nav>
-
-          {/* Centered Brand Logo */}
-          <div className="text-center">
-            <a href="#home" className="inline-block group">
-              <span
-                className={`block font-cinzel text-xl sm:text-2xl lg:text-3xl font-semibold tracking-[0.3em] transition-colors duration-300 ${
-                  isScrolled ? 'text-[#1E1C1A] group-hover:text-[#B8945A]' : 'text-white'
-                }`}
-              >
-                AURELIA
-              </span>
-              <span
-                className={`block text-[10px] sm:text-[11px] tracking-[0.45em] uppercase font-medium -mt-0.5 transition-colors ${
-                  isScrolled ? 'text-[#746F68]' : 'text-white/75'
-                }`}
-              >
-                FINE JEWELLERY
-              </span>
-            </a>
-          </div>
 
           {/* Desktop Navigation Links (Right) & Actions */}
           <div className="flex items-center space-x-5 sm:space-x-7">
@@ -175,12 +167,7 @@ export default function Navbar({
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#E8DDCD]">
                 <div>
-                  <span className="font-cinzel text-xl font-semibold tracking-[0.2em] text-[#1E1C1A]">
-                    AURELIA
-                  </span>
-                  <span className="block text-[10px] tracking-[0.35em] text-[#746F68] uppercase font-medium">
-                    FINE JEWELLERY
-                  </span>
+                  <img src={logoImg} alt="Vetri Jewelers" className="h-12 w-auto object-contain" />
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
