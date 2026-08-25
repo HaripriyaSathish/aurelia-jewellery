@@ -1,6 +1,6 @@
 @echo off
 echo ====================================================
-echo Starting AURELIA Fine Jewellery - Django Backend
+echo Starting VETRI Fine Jewellery - Django Backend
 echo ====================================================
 cd /d %~dp0\backend
 call .\venv\Scripts\activate

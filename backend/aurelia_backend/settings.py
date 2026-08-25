@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-aurelia-jewellery-luxury-key-default-2026')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-vetri-jewellery-luxury-key-default-2026')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
@@ -156,5 +156,5 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'AURELIA Fine Jewellery <concierge@aureliajewels.com>')
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'concierge@aureliajewels.com')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'VETRI Fine Jewellery <concierge@vetrijewels.com>')
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'concierge@vetrijewels.com')

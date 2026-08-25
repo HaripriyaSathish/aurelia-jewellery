@@ -9,7 +9,7 @@ export default function ChatbotWidget() {
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      text: "Hello! I'm the AURELIA assistant. Ask me about current offers, track an order, or anything about our jewellery.",
+      text: "Hello! I'm the VETRI assistant. Ask me about current offers, track an order, or anything about our jewellery.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -65,7 +65,7 @@ export default function ChatbotWidget() {
           <div className="p-4 bg-[#1E1C1A] text-[#FFFDF9] flex items-center gap-2 flex-shrink-0">
             <Sparkles className="w-4 h-4 text-[#B8945A]" />
             <div>
-              <p className="text-sm font-serif">AURELIA Assistant</p>
+              <p className="text-sm font-serif">VETRI Assistant</p>
               <p className="text-[10px] text-[#E8DDCD]/70 uppercase tracking-wider">Offers · Orders · Products</p>
             </div>
           </div>

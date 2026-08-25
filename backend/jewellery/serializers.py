@@ -92,7 +92,7 @@ class NewsletterSubscriberSerializer(serializers.ModelSerializer):
     def validate_email(self, value):
         value = value.strip().lower()
         if NewsletterSubscriber.objects.filter(email=value).exists():
-            raise serializers.ValidationError("This email is already part of the AURELIA Private Circle.")
+            raise serializers.ValidationError("This email is already part of the VETRI Private Circle.")
         return value
 
 

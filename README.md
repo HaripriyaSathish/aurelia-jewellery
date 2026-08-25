@@ -1,4 +1,4 @@
-﻿# AURELIA — Fine Jewellery (Haute Joaillerie)
+﻿# VETRI — Fine Jewellery (Haute Joaillerie)
 
 A **premium, luxury, single-page jewellery shop website** with a high-end editorial visual style. Built with a **React + Vite** frontend and **Django REST Framework** backend.
 
@@ -6,7 +6,7 @@ A **premium, luxury, single-page jewellery shop website** with a high-end editor
 
 ## 💎 Project Overview
 
-- **Brand**: `AURELIA FINE JEWELLERY`
+- **Brand**: `VETRI FINE JEWELLERY`
 - **Design Aesthetic**: Luxury Haute Joaillerie editorial aesthetic (Warm Ivory `#F8F5F0`, Warm White `#FFFDF9`, Champagne `#E8DDCD`, Muted Gold `#B8945A`, Deep Charcoal `#1E1C1A`).
 - **Typography**: Cormorant Garamond, Playfair Display, Cinzel, Montserrat.
 - **Frontend Stack**: React 19, Vite, Tailwind CSS v4, Lucide React, Axios.

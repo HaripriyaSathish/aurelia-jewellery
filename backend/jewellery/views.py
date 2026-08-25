@@ -119,7 +119,7 @@ class ContactEnquiryCreateView(APIView):
             return Response(
                 {
                     "success": True,
-                    "message": "Thank you for reaching out to AURELIA. Your inquiry has been received and our jewellery concierge will connect with you shortly.",
+                    "message": "Thank you for reaching out to VETRI. Your inquiry has been received and our jewellery concierge will connect with you shortly.",
                     "data": serializer.data,
                 },
                 status=status.HTTP_201_CREATED,
@@ -139,7 +139,7 @@ class NewsletterSubscribeView(APIView):
             return Response(
                 {
                     "success": True,
-                    "message": "Welcome to the AURELIA Private Circle. You have been successfully subscribed.",
+                    "message": "Welcome to the VETRI Private Circle. You have been successfully subscribed.",
                     "data": serializer.data,
                 },
                 status=status.HTTP_201_CREATED,
