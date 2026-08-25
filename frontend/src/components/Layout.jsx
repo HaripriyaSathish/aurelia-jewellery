@@ -30,6 +30,8 @@ export default function Layout() {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [contactOffset, setContactOffset] = useState(24);
 
   return (
     <div className="min-h-screen bg-[#F8F5F0] text-[#1E1C1A] selection:bg-[#B8945A] selection:text-white flex flex-col justify-between relative font-sans">
@@ -51,9 +53,14 @@ export default function Layout() {
 
       <Footer settings={settings} />
 
-      <FloatingContactButtons settings={settings} />
+      <FloatingContactButtons
+        settings={settings}
+        isChatOpen={isChatOpen}
+        onToggleChat={() => setIsChatOpen((v) => !v)}
+        onOffsetChange={setContactOffset}
+      />
 
-      <ChatbotWidget />
+      <ChatbotWidget isOpen={isChatOpen} bottomOffset={contactOffset} />
 
       <ProductQuickViewModal
         product={quickViewProduct}
