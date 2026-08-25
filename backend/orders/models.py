@@ -35,6 +35,7 @@ class Order(models.Model):
     notes = models.TextField(blank=True)
 
     subtotal = models.DecimalField(max_digits=12, decimal_places=2)
+    tax_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     total_amount = models.DecimalField(max_digits=12, decimal_places=2)
 
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
@@ -42,12 +43,22 @@ class Order(models.Model):
     cashfree_order_id = models.CharField(max_length=120, blank=True)
     payment_session_id = models.CharField(max_length=255, blank=True)
     cashfree_payment_status = models.CharField(max_length=40, blank=True)
+    transaction_id = models.CharField(max_length=100, blank=True, help_text="Cashfree payment ID (cf_payment_id)")
+    payment_method = models.CharField(max_length=50, blank=True, help_text="e.g. card, upi, netbanking")
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created_at']
+
+    @property
+    def cgst_amount(self):
+        return round(self.tax_amount / 2, 2)
+
+    @property
+    def sgst_amount(self):
+        return self.tax_amount - self.cgst_amount
 
     def __str__(self):
         return f"{self.order_number} ({self.status})"

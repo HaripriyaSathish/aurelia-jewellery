@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-aurelia-jewellery-luxury-key-default-2026')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-vetri-jewellery-luxury-key-default-2026')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'aurelia_backend.urls'
+ROOT_URLCONF = 'vetri_backend.urls'
 
 FRONTEND_DIST = os.path.join(BASE_DIR.parent, 'frontend', 'dist')
 
@@ -70,14 +70,24 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'aurelia_backend.wsgi.application'
+WSGI_APPLICATION = 'vetri_backend.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Uses a persistent Postgres database when DATABASE_URL is set (required on
+# Render's free plan, where the local disk — and any SQLite file on it — is
+# wiped on every deploy). Falls back to a local SQLite file otherwise, which
+# is fine for local development.
+if os.getenv('DATABASE_URL'):
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(env='DATABASE_URL', conn_max_age=600, ssl_require=True)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -140,6 +150,11 @@ CASHFREE_APP_ID = os.getenv('CASHFREE_APP_ID', '')
 CASHFREE_SECRET_KEY = os.getenv('CASHFREE_SECRET_KEY', '')
 CASHFREE_ENV = os.getenv('CASHFREE_ENV', 'TEST')  # 'TEST' or 'PRODUCTION'
 
+# GST rate applied at checkout (split evenly into CGST + SGST for the invoice).
+# Default 3% matches the standard GST slab for gold/diamond jewellery in India.
+GST_RATE = float(os.getenv('GST_RATE', '0.03'))
+GSTIN = os.getenv('GSTIN', '')  # your business GSTIN, shown on the invoice PDF if set
+
 # WhatsApp Business Cloud API (optional — click-to-chat links work without this)
 WHATSAPP_CLOUD_TOKEN = os.getenv('WHATSAPP_CLOUD_TOKEN', '')
 WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', '')
@@ -156,5 +171,5 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'AURELIA Fine Jewellery <concierge@aureliajewels.com>')
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'concierge@aureliajewels.com')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'VETRI Fine Jewellery <concierge@vetrijewels.com>')
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'concierge@vetrijewels.com')

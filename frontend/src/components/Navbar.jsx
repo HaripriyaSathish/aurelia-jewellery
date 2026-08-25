@@ -68,16 +68,16 @@ export default function Navbar({
                 <img
                 src={logoImg}
                 alt="Vetri Jewelers"
-                className="h-16 sm:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
           </div>
 
                    {/* Centered Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5 flex-shrink-0">
             {navLinks.map((link) => {
               const isHash = link.href.startsWith('/#');
-              const linkClass = `text-[12px] font-medium tracking-[0.25em] transition-all duration-300 relative group py-1 ${
+              const linkClass = `text-[12px] font-medium tracking-[0.15em] xl:tracking-[0.25em] whitespace-nowrap transition-all duration-300 relative group py-1 ${
                 isScrolled ? 'text-[#1E1C1A] hover:text-[#B8945A]' : 'text-white/90 hover:text-white'
               }`;
               return isHash ? (
@@ -100,12 +100,17 @@ export default function Navbar({
             {/* Account Trigger */}
             <Link
               to={user ? '/account' : '/login'}
-              className={`p-1.5 transition-colors hover:scale-105 duration-200 ${
+              className={`flex items-center gap-1.5 transition-colors hover:scale-105 duration-200 ${
                 isScrolled ? 'text-[#1E1C1A] hover:text-[#B8945A]' : 'text-white hover:text-[#E8DDCD]'
               }`}
               title={user ? 'My Account' : 'Sign In'}
             >
-              <User className="w-4 h-4 sm:w-5 sm:h-5" />
+              <User className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+              {user && (
+                <span className="hidden xl:inline text-[11px] font-medium tracking-wider whitespace-nowrap">
+                  Hi, {user.first_name || 'there'}
+                </span>
+              )}
             </Link>
 
             {/* Search Trigger */}
@@ -169,7 +174,7 @@ export default function Navbar({
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#E8DDCD]">
                 <div>
-                  <img src={logoImg} alt="Vetri Jewelers" className="h-16 w-auto object-contain" />
+                  <img src={logoImg} alt="Vetri Jewelers" className="h-16 w-auto object-contain mix-blend-multiply" />
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
@@ -199,7 +204,7 @@ export default function Navbar({
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-sm font-medium tracking-[0.2em] text-[#1E1C1A] hover:text-[#B8945A] transition-colors py-1 border-b border-[#E8DDCD]/40"
                 >
-                  {user ? 'MY ACCOUNT' : 'SIGN IN / REGISTER'}
+                  {user ? `HI, ${(user.first_name || 'THERE').toUpperCase()} — MY ACCOUNT` : 'SIGN IN / REGISTER'}
                 </Link>
               </nav>
             </div>

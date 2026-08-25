@@ -43,11 +43,14 @@ class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     timeline = OrderStatusEventSerializer(many=True, read_only=True)
     status_display = serializers.CharField(source='get_status_display', read_only=True)
+    cgst_amount = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True)
+    sgst_amount = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True)
 
     class Meta:
         model = Order
         fields = [
             'order_number', 'customer_name', 'customer_email', 'customer_phone',
-            'address', 'city', 'subtotal', 'total_amount', 'status', 'status_display',
-            'cashfree_payment_status', 'created_at', 'updated_at', 'items', 'timeline',
+            'address', 'city', 'subtotal', 'tax_amount', 'cgst_amount', 'sgst_amount',
+            'total_amount', 'status', 'status_display', 'cashfree_payment_status',
+            'transaction_id', 'payment_method', 'created_at', 'updated_at', 'items', 'timeline',
         ]

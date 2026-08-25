@@ -1,11 +1,11 @@
 ﻿services:
   - type: web
-    name: aurelia-jewellery
+    name: vetri-jewellery
     runtime: python
     region: oregon
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "cd backend && gunicorn aurelia_backend.wsgi:application --bind 0.0.0.0:$PORT"
+    startCommand: "cd backend && gunicorn vetri_backend.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
@@ -15,10 +15,18 @@
         generateValue: true
       - key: ALLOWED_HOSTS
         value: ".onrender.com,localhost,127.0.0.1"
+      # REQUIRED for data to survive redeploys: Render's free web service
+      # disk is wiped on every deploy, so without this the site falls back
+      # to a local SQLite file and loses all orders/admin edits each time.
+      # Get a free, non-expiring Postgres connection string from
+      # https://neon.tech or https://supabase.com and paste it here, e.g.
+      # postgresql://user:pass@host/dbname?sslmode=require
+      - key: DATABASE_URL
+        sync: false
       - key: EMAIL_BACKEND
         value: django.core.mail.backends.console.EmailBackend
       - key: FRONTEND_URL
-        value: "https://aurelia-jewellery.onrender.com"
+        value: "https://vetri-jewellery.onrender.com"
       # Cashfree TEST-mode credentials — set these in the Render dashboard
       # (Environment tab) after creating a free test account at
       # https://merchant.cashfree.com/merchants/signup
@@ -31,4 +39,14 @@
       # Optional: enables open-ended AI answers in the chatbot widget.
       # Leave unset to keep the rule-based offers/order-tracking replies only.
       - key: GROQ_API_KEY
+        sync: false
+      - key: GST_RATE
+        value: "0.03"
+      - key: GSTIN
+        sync: false
+      # Optional: enables automated WhatsApp order-status messages.
+      # Requires a Meta Business + WhatsApp API setup — see backend/.env.example.
+      - key: WHATSAPP_CLOUD_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
         sync: false

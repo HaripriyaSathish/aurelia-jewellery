@@ -49,7 +49,7 @@ export default function OrderTrackingPage() {
 
     let saved = null;
     try {
-      saved = JSON.parse(sessionStorage.getItem('aurelia_last_checkout') || 'null');
+      saved = JSON.parse(sessionStorage.getItem('vetri_last_checkout') || 'null');
     } catch {
       saved = null;
     }
@@ -66,7 +66,7 @@ export default function OrderTrackingPage() {
       if (saved && saved.orderNumber === orderFromUrl) {
         setForm({ orderNumber: orderFromUrl, email: saved.email || '', phone: saved.phone || '' });
         lookupOrder({ orderNumber: orderFromUrl, email: saved.email, phone: saved.phone });
-        sessionStorage.removeItem('aurelia_last_checkout');
+        sessionStorage.removeItem('vetri_last_checkout');
         clearCart();
       }
     }
@@ -180,10 +180,37 @@ export default function OrderTrackingPage() {
               </div>
             ))}
           </div>
-          <div className="flex justify-between text-sm font-semibold text-[#1E1C1A] pt-3 border-t border-[#E8DDCD] mb-6">
+          <div className="space-y-1 pt-3 border-t border-[#E8DDCD] text-xs text-[#5C574F] mb-2">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span>₹{parseFloat(order.subtotal).toLocaleString('en-IN')}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>CGST + SGST</span>
+              <span>₹{parseFloat(order.tax_amount).toLocaleString('en-IN')}</span>
+            </div>
+          </div>
+          <div className="flex justify-between text-sm font-semibold text-[#1E1C1A] pt-2 border-t border-[#E8DDCD] mb-2">
             <span>Total Paid</span>
             <span>₹{parseFloat(order.total_amount).toLocaleString('en-IN')}</span>
           </div>
+
+          {(order.transaction_id || order.payment_method) && (
+            <div className="space-y-1 text-[11px] text-[#5C574F] mb-6">
+              {order.payment_method && (
+                <div className="flex justify-between">
+                  <span>Payment Mode</span>
+                  <span className="text-[#1E1C1A] font-medium">{order.payment_method}</span>
+                </div>
+              )}
+              {order.transaction_id && (
+                <div className="flex justify-between">
+                  <span>Transaction ID</span>
+                  <span className="text-[#1E1C1A] font-medium">{order.transaction_id}</span>
+                </div>
+              )}
+            </div>
+          )}
 
           <a
             href={whatsappTrackUrl}

@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Lock, Send } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { orderService } from '../services/api';
 
+// Must match the backend's GST_RATE setting (backend/.env GST_RATE, default 3%).
+// This is only used to preview the tax breakdown before payment — the
+// authoritative amount actually charged is always computed server-side.
+const GST_RATE = 0.03;
+
 export default function CheckoutPage() {
   const { cart } = useCart();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
 
   const [form, setForm] = useState({
     name: user ? `${user.first_name} ${user.last_name}`.trim() : '',
@@ -24,6 +29,10 @@ export default function CheckoutPage() {
     new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(parseFloat(val || 0));
 
   const subtotal = cart.reduce((acc, item) => acc + parseFloat(item.price) * (item.quantity || 1), 0);
+  const taxAmount = subtotal * GST_RATE;
+  const cgstAmount = taxAmount / 2;
+  const sgstAmount = taxAmount - cgstAmount;
+  const grandTotal = subtotal + taxAmount;
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -59,7 +68,7 @@ export default function CheckoutPage() {
       // Remember contact details so the order-tracking page can auto-verify
       // payment and look the order up when Cashfree redirects back here.
       sessionStorage.setItem(
-        'aurelia_last_checkout',
+        'vetri_last_checkout',
         JSON.stringify({ orderNumber: data.order_number, email: form.email, phone: form.phone })
       );
 
@@ -81,6 +90,14 @@ export default function CheckoutPage() {
       setLoading(false);
     }
   };
+
+  if (authLoading) {
+    return <div className="min-h-[60vh] flex items-center justify-center text-[#5C574F] text-sm pt-24">Loading...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" state={{ from: '/checkout' }} replace />;
+  }
 
   if (cart.length === 0) {
     return (
@@ -164,7 +181,7 @@ export default function CheckoutPage() {
             className="w-full py-3.5 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-xs font-semibold tracking-[0.2em] uppercase transition-colors flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
           >
             <Send className="w-4 h-4 text-[#E8DDCD]" />
-            <span>{loading ? 'REDIRECTING TO PAYMENT...' : `PAY ${formatPrice(subtotal)} SECURELY`}</span>
+            <span>{loading ? 'REDIRECTING TO PAYMENT...' : `PAY ${formatPrice(grandTotal)} SECURELY`}</span>
           </button>
 
           <div className="flex items-center justify-center gap-1.5 text-[10px] text-[#5C574F] uppercase tracking-wider pt-1">
@@ -191,13 +208,27 @@ export default function CheckoutPage() {
                 </div>
               ))}
             </div>
-            <div className="flex justify-between text-xs text-[#5C574F] pt-3 border-t border-[#E8DDCD] mb-1.5">
-              <span>Delivery</span>
-              <span className="text-[#B8945A] font-semibold uppercase">Complimentary</span>
+            <div className="space-y-1.5 pt-3 border-t border-[#E8DDCD] text-xs text-[#5C574F]">
+              <div className="flex justify-between">
+                <span>Subtotal</span>
+                <span>{formatPrice(subtotal)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>CGST ({(GST_RATE * 50).toFixed(2)}%)</span>
+                <span>{formatPrice(cgstAmount)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>SGST ({(GST_RATE * 50).toFixed(2)}%)</span>
+                <span>{formatPrice(sgstAmount)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Delivery</span>
+                <span className="text-[#B8945A] font-semibold uppercase">Complimentary</span>
+              </div>
             </div>
-            <div className="flex justify-between text-base font-semibold text-[#1E1C1A] pt-2 border-t border-[#E8DDCD]">
+            <div className="flex justify-between text-base font-semibold text-[#1E1C1A] pt-2 mt-1.5 border-t border-[#E8DDCD]">
               <span className="font-serif">Total</span>
-              <span>{formatPrice(subtotal)}</span>
+              <span>{formatPrice(grandTotal)}</span>
             </div>
           </div>
         </div>

@@ -37,7 +37,11 @@ export default function LoginPage() {
             <LogIn className="w-5 h-5" />
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl text-[#1E1C1A] mb-2">Welcome Back</h1>
-          <p className="text-xs text-[#5C574F]">Sign in to track orders and manage your account.</p>
+          <p className="text-xs text-[#5C574F]">
+            {redirectTo === '/checkout'
+              ? 'Please sign in to complete your secure checkout.'
+              : 'Sign in to track orders and manage your account.'}
+          </p>
         </div>
 
         {error && (
@@ -92,7 +96,7 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-xs text-[#5C574F] mt-6">
-          New to AURELIA?{' '}
+          New to VETRI?{' '}
           <Link to="/register" className="text-[#B8945A] font-semibold hover:text-[#1E1C1A] transition-colors">
             Create an account
           </Link>

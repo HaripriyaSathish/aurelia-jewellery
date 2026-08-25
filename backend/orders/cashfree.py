@@ -83,3 +83,19 @@ def get_payment_order(cashfree_order_id):
         raise CashfreeError(data.get("message", "Unable to fetch Cashfree order status."))
 
     return data
+
+
+def get_order_payments(cashfree_order_id):
+    """
+    Fetches the list of payment attempts for an order — used to pull the
+    transaction ID (cf_payment_id) and payment method for the successful
+    payment, for display on the invoice.
+    """
+    response = requests.get(f"{_base_url()}/orders/{cashfree_order_id}/payments", headers=_headers(), timeout=15)
+    data = response.json()
+
+    if response.status_code >= 400:
+        logger.warning(f"Cashfree get payments failed: {data}")
+        return []
+
+    return data if isinstance(data, list) else []

@@ -7,7 +7,7 @@ export function CartProvider({ children }) {
 
   const [wishlist, setWishlist] = useState(() => {
     try {
-      const saved = localStorage.getItem('aurelia_wishlist');
+      const saved = localStorage.getItem('vetri_wishlist');
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -16,7 +16,7 @@ export function CartProvider({ children }) {
 
   const [cart, setCart] = useState(() => {
     try {
-      const saved = localStorage.getItem('aurelia_cart');
+      const saved = localStorage.getItem('vetri_cart');
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -24,11 +24,11 @@ export function CartProvider({ children }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('aurelia_wishlist', JSON.stringify(wishlist));
+    localStorage.setItem('vetri_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
 
   useEffect(() => {
-    localStorage.setItem('aurelia_cart', JSON.stringify(cart));
+    localStorage.setItem('vetri_cart', JSON.stringify(cart));
   }, [cart]);
 
   const showToast = useCallback((msg) => {

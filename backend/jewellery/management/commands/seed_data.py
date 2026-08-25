@@ -11,33 +11,40 @@ from jewellery.models import (
 )
 
 class Command(BaseCommand):
-    help = 'Seeds initial luxury jewellery data for AURELIA FINE JEWELLERY'
+    help = 'Seeds initial luxury jewellery data for VETRI FINE JEWELLERY'
 
     def handle(self, *args, **kwargs):
-        self.stdout.write(self.style.NOTICE('Starting AURELIA luxury database seeding...'))
+        if JewelleryProduct.objects.exists():
+            self.stdout.write(self.style.WARNING(
+                'Products already exist in the database — skipping seed so live admin '
+                'edits (shop settings, products, prices) are not overwritten on redeploy.'
+            ))
+            return
+
+        self.stdout.write(self.style.NOTICE('Starting VETRI luxury database seeding...'))
 
         # 1. Superuser
         if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser('admin', 'admin@aureliajewels.com', 'admin123')
+            User.objects.create_superuser('admin', 'admin@vetrijewels.com', 'admin123')
             self.stdout.write(self.style.SUCCESS('Created superuser: admin (password: admin123)'))
         else:
             self.stdout.write(self.style.WARNING('Superuser "admin" already exists.'))
 
         # 2. Shop Settings
         settings, created = ShopSettings.objects.get_or_create(pk=1)
-        settings.shop_name = "AURELIA FINE JEWELLERY"
+        settings.shop_name = "VETRI FINE JEWELLERY"
         settings.tagline = "The Art of Forever — Mastercrafted Haute Joaillerie"
         settings.phone_number = "+91 98765 43210"
         settings.whatsapp_number = "+91 98765 43210"
-        settings.whatsapp_message = "Hello AURELIA, I would like to know more about your jewellery collection."
-        settings.email = "hello@aureliajewels.com"
+        settings.whatsapp_message = "Hello VETRI, I would like to know more about your jewellery collection."
+        settings.email = "hello@vetrijewels.com"
         settings.address = "123 Luxury Street, Chennai, Tamil Nadu, India"
         settings.opening_hours = "Mon – Sat: 10:30 AM – 8:30 PM | Sun: 11:00 AM – 7:00 PM"
         settings.google_map_embed_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.589139886364!2d80.2452!3d13.0475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266497f1f9e53%3A0x6b4f7b21e8d6411!2sKhader%20Nawaz%20Khan%20Rd%2C%20Nungambakkam%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000"
         settings.google_map_direct_url = "https://maps.google.com/?q=Khader+Nawaz+Khan+Road+Nungambakkam+Chennai"
-        settings.facebook_url = "https://facebook.com/aureliajewels"
-        settings.instagram_url = "https://instagram.com/aureliajewels"
-        settings.pinterest_url = "https://pinterest.com/aureliajewels"
+        settings.facebook_url = "https://facebook.com/vetrijewels"
+        settings.instagram_url = "https://instagram.com/vetrijewels"
+        settings.pinterest_url = "https://pinterest.com/vetrijewels"
         settings.save()
         self.stdout.write(self.style.SUCCESS('Updated Shop Settings.'))
 
@@ -128,8 +135,8 @@ class Command(BaseCommand):
                 "is_new": False,
             },
             {
-                "name": "Aurelia Gold Earrings",
-                "slug": "aurelia-gold-earrings",
+                "name": "Vetri Gold Earrings",
+                "slug": "vetri-gold-earrings",
                 "category": cat_objs["gold"],
                 "description": "Sculptural drops forged from solid 18K yellow gold featuring a hand-brushed satin finish paired with mirror-polished bevels. A harmonious dialogue of fluid movement and architectural modernism.",
                 "price": 165000.00,
@@ -264,7 +271,7 @@ class Command(BaseCommand):
             {
                 "customer_name": "Eleanor Vance",
                 "customer_title": "Private Collector, London & Mumbai",
-                "quote": "AURELIA represents the absolute pinnacle of high jewellery craftsmanship. The Celeste necklace was custom-fitted for our gala and the light reflection was simply hypnotic.",
+                "quote": "VETRI represents the absolute pinnacle of high jewellery craftsmanship. The Celeste necklace was custom-fitted for our gala and the light reflection was simply hypnotic.",
                 "rating": 5,
                 "customer_image_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
                 "is_active": True,
@@ -294,4 +301,4 @@ class Command(BaseCommand):
             )
         self.stdout.write(self.style.SUCCESS(f'Created/Updated {len(testimonials_data)} Testimonials.'))
 
-        self.stdout.write(self.style.SUCCESS('AURELIA database seeding completed successfully!'))
+        self.stdout.write(self.style.SUCCESS('VETRI database seeding completed successfully!'))

@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MessageCircle, MessageSquareText, X } from 'lucide-react';
 
-export default function FloatingContactButtons({ settings }) {
+export default function FloatingContactButtons({ settings, isChatOpen, onToggleChat, onOffsetChange }) {
   const [bottomOffset, setBottomOffset] = useState(24);
   const [activeTooltip, setActiveTooltip] = useState(null);
 
@@ -41,7 +41,7 @@ export default function FloatingContactButtons({ settings }) {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll, { passive: true });
-    
+
     // Initial check
     handleScroll();
 
@@ -51,7 +51,20 @@ export default function FloatingContactButtons({ settings }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (onOffsetChange) onOffsetChange(bottomOffset);
+  }, [bottomOffset, onOffsetChange]);
+
   const buttons = [
+    {
+      id: 'chat',
+      name: isChatOpen ? 'Close Assistant' : 'AI Assistant',
+      icon: isChatOpen ? X : MessageSquareText,
+      onClick: onToggleChat,
+      bgClass: 'bg-[#1E1C1A] text-[#E8DDCD] hover:bg-[#B8945A] hover:text-white border border-[#B8945A]/50',
+      iconClass: 'w-5 h-5 sm:w-6 sm:h-6',
+      tooltip: isChatOpen ? 'Close Assistant' : 'Ask VETRI Assistant',
+    },
     {
       id: 'whatsapp',
       name: 'WhatsApp Concierge',
@@ -105,17 +118,30 @@ export default function FloatingContactButtons({ settings }) {
             </div>
 
             {/* Circular Floating Action Button */}
-            <a
-              href={btn.href}
-              target={btn.target}
-              rel={btn.rel}
-              onMouseEnter={() => setActiveTooltip(btn.id)}
-              onMouseLeave={() => setActiveTooltip(null)}
-              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)] transform hover:scale-108 transition-all duration-300 ${btn.bgClass}`}
-              aria-label={btn.name}
-            >
-              <Icon className={btn.iconClass} />
-            </a>
+            {btn.onClick ? (
+              <button
+                type="button"
+                onClick={btn.onClick}
+                onMouseEnter={() => setActiveTooltip(btn.id)}
+                onMouseLeave={() => setActiveTooltip(null)}
+                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)] transform hover:scale-108 transition-all duration-300 ${btn.bgClass}`}
+                aria-label={btn.name}
+              >
+                <Icon className={btn.iconClass} />
+              </button>
+            ) : (
+              <a
+                href={btn.href}
+                target={btn.target}
+                rel={btn.rel}
+                onMouseEnter={() => setActiveTooltip(btn.id)}
+                onMouseLeave={() => setActiveTooltip(null)}
+                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.25)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)] transform hover:scale-108 transition-all duration-300 ${btn.bgClass}`}
+                aria-label={btn.name}
+              >
+                <Icon className={btn.iconClass} />
+              </a>
+            )}
 
           </div>
         );
