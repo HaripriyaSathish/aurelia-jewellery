@@ -72,12 +72,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vetri_backend.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Uses a persistent Postgres database when DATABASE_URL is set (required on
+# Render's free plan, where the local disk — and any SQLite file on it — is
+# wiped on every deploy). Falls back to a local SQLite file otherwise, which
+# is fine for local development.
+if os.getenv('DATABASE_URL'):
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(env='DATABASE_URL', conn_max_age=600, ssl_require=True)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

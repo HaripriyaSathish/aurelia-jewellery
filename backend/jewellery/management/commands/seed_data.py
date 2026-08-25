@@ -14,6 +14,13 @@ class Command(BaseCommand):
     help = 'Seeds initial luxury jewellery data for VETRI FINE JEWELLERY'
 
     def handle(self, *args, **kwargs):
+        if JewelleryProduct.objects.exists():
+            self.stdout.write(self.style.WARNING(
+                'Products already exist in the database — skipping seed so live admin '
+                'edits (shop settings, products, prices) are not overwritten on redeploy.'
+            ))
+            return
+
         self.stdout.write(self.style.NOTICE('Starting VETRI luxury database seeding...'))
 
         # 1. Superuser
