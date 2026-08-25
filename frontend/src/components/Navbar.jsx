@@ -100,12 +100,17 @@ export default function Navbar({
             {/* Account Trigger */}
             <Link
               to={user ? '/account' : '/login'}
-              className={`p-1.5 transition-colors hover:scale-105 duration-200 ${
+              className={`flex items-center gap-1.5 transition-colors hover:scale-105 duration-200 ${
                 isScrolled ? 'text-[#1E1C1A] hover:text-[#B8945A]' : 'text-white hover:text-[#E8DDCD]'
               }`}
               title={user ? 'My Account' : 'Sign In'}
             >
-              <User className="w-4 h-4 sm:w-5 sm:h-5" />
+              <User className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+              {user && (
+                <span className="hidden lg:inline text-[11px] font-medium tracking-wider whitespace-nowrap">
+                  Hi, {user.first_name || 'there'}
+                </span>
+              )}
             </Link>
 
             {/* Search Trigger */}
@@ -199,7 +204,7 @@ export default function Navbar({
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-sm font-medium tracking-[0.2em] text-[#1E1C1A] hover:text-[#B8945A] transition-colors py-1 border-b border-[#E8DDCD]/40"
                 >
-                  {user ? 'MY ACCOUNT' : 'SIGN IN / REGISTER'}
+                  {user ? `HI, ${(user.first_name || 'THERE').toUpperCase()} — MY ACCOUNT` : 'SIGN IN / REGISTER'}
                 </Link>
               </nav>
             </div>

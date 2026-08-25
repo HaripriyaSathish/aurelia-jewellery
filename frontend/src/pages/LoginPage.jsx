@@ -37,7 +37,11 @@ export default function LoginPage() {
             <LogIn className="w-5 h-5" />
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl text-[#1E1C1A] mb-2">Welcome Back</h1>
-          <p className="text-xs text-[#5C574F]">Sign in to track orders and manage your account.</p>
+          <p className="text-xs text-[#5C574F]">
+            {redirectTo === '/checkout'
+              ? 'Please sign in to complete your secure checkout.'
+              : 'Sign in to track orders and manage your account.'}
+          </p>
         </div>
 
         {error && (
