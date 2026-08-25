@@ -49,7 +49,7 @@ export default function Testimonials({ testimonials = [] }) {
             Words of Adornment
           </h2>
 
-          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
+          <p className="text-base sm:text-lg text-[#5C574F] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Reflections from patrons, connoisseurs, and collectors who have made VETRI a part of their legacy.
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function Testimonials({ testimonials = [] }) {
                   <h4 className="font-serif text-xs sm:text-sm font-semibold text-[#1E1C1A]">
                     {t.customer_name}
                   </h4>
-                  <span className="text-[9px] sm:text-[10px] text-[#746F68] uppercase tracking-wider block">
+                  <span className="text-[9px] sm:text-[10px] text-[#5C574F] uppercase tracking-wider block">
                     {t.customer_title}
                   </span>
                 </div>

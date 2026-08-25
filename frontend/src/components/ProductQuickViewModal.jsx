@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
-import { X, Heart, ShoppingBag, MessageCircle, ShieldCheck, Sparkles, Truck, RefreshCw } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { X, Heart, ShoppingBag, MessageCircle, ShieldCheck, Sparkles, Truck, RefreshCw, ArrowRight } from 'lucide-react';
 
 export default function ProductQuickViewModal({
   product,
@@ -10,10 +11,10 @@ export default function ProductQuickViewModal({
   onAddToCart,
   whatsappNumber = "+919876543210"
 }) {
-  if (!isOpen || !product) return null;
-
-  const [selectedImg, setSelectedImg] = useState(product.image_url);
+  const [selectedImg, setSelectedImg] = useState(product?.image_url);
   const [selectedSize, setSelectedSize] = useState('Standard / Adjustable');
+
+  if (!isOpen || !product) return null;
 
   const formatPrice = (val) => {
     if (!val) return '';
@@ -49,7 +50,7 @@ export default function ProductQuickViewModal({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-30 p-2 text-[#746F68] hover:text-[#1E1C1A] bg-white/80 rounded-full transition-colors"
+          className="absolute top-4 right-4 z-30 p-2 text-[#5C574F] hover:text-[#1E1C1A] bg-white/80 rounded-full transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -99,39 +100,50 @@ export default function ProductQuickViewModal({
                 {product.category_name || "HAUTE JOAILLERIE"}
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#1E1C1A] font-medium tracking-tight mb-3">
+              <h2 className="font-serif text-2xl sm:text-3xl text-[#1E1C1A] font-medium tracking-tight mb-1">
                 {product.name}
               </h2>
+
+              {product.slug && (
+                <Link
+                  to={`/product/${product.slug}`}
+                  onClick={onClose}
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.2em] uppercase text-[#B8945A] hover:text-[#1E1C1A] transition-colors mb-3"
+                >
+                  <span>View Full Details</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              )}
 
               <div className="flex items-baseline gap-3 mb-4">
                 <span className="text-xl sm:text-2xl font-semibold text-[#1E1C1A]">
                   {formatPrice(product.price)}
                 </span>
                 {product.old_price && (
-                  <span className="text-sm text-[#746F68] line-through">
+                  <span className="text-sm text-[#5C574F] line-through">
                     {formatPrice(product.old_price)}
                   </span>
                 )}
               </div>
 
-              <p className="text-xs text-[#746F68] font-light leading-relaxed mb-6">
+              <p className="text-xs text-[#5C574F] font-light leading-relaxed mb-6">
                 {product.description}
               </p>
 
               {/* Specifications Box */}
               <div className="bg-[#F8F5F0] border border-[#E8DDCD] p-4 mb-6 space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-[#746F68]">Precious Metal:</span>
+                  <span className="text-[#5C574F]">Precious Metal:</span>
                   <span className="font-medium text-[#1E1C1A]">{product.material}</span>
                 </div>
                 {product.carat_weight && (
                   <div className="flex justify-between">
-                    <span className="text-[#746F68]">Gemstone Carat:</span>
+                    <span className="text-[#5C574F]">Gemstone Carat:</span>
                     <span className="font-medium text-[#1E1C1A]">{product.carat_weight}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span className="text-[#746F68]">Certification:</span>
+                  <span className="text-[#5C574F]">Certification:</span>
                   <span className="font-medium text-[#1E1C1A]">GIA / IGI Verified Hallmark</span>
                 </div>
               </div>
@@ -149,7 +161,7 @@ export default function ProductQuickViewModal({
                       className={`px-3 py-1.5 text-xs border transition-all ${
                         selectedSize === sz
                           ? 'border-[#B8945A] bg-[#1E1C1A] text-white'
-                          : 'border-[#E8DDCD] text-[#746F68] hover:border-[#B8945A]'
+                          : 'border-[#E8DDCD] text-[#5C574F] hover:border-[#B8945A]'
                       }`}
                     >
                       {sz}
@@ -196,7 +208,7 @@ export default function ProductQuickViewModal({
               </a>
 
               {/* Assurances */}
-              <div className="flex items-center justify-around pt-2 text-[10px] text-[#746F68] uppercase tracking-wider">
+              <div className="flex items-center justify-around pt-2 text-[10px] text-[#5C574F] uppercase tracking-wider">
                 <span className="flex items-center gap-1">
                   <Truck className="w-3 h-3 text-[#B8945A]" /> Insured Delivery
                 </span>

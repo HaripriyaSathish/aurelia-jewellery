@@ -74,7 +74,7 @@ export default function Hero({ heroData }) {
           <div className="font-serif text-lg text-[#1E1C1A] font-medium tracking-wide group-hover:text-[#B8945A] transition-colors">
             THE ETERNAL COLLECTION
           </div>
-          <div className="text-xs text-[#746F68] mt-1.5 flex items-center justify-between">
+          <div className="text-xs text-[#5C574F] mt-1.5 flex items-center justify-between">
             <span>Discover timeless brilliance</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#B8945A] group-hover:translate-x-1 transition-transform" />
           </div>

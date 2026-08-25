@@ -1,4 +1,5 @@
 ﻿@import "tailwindcss";
+@import "tw-animate-css";
 
 @layer base {
   :root {
@@ -11,7 +12,13 @@
     --color-gold-dark: #96753B;
     --color-charcoal: #1E1C1A;
     --color-charcoal-light: #2A2724;
-    --color-secondary-text: #746F68;
+    --color-secondary-text: #5C574F;
+  }
+
+  html {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
@@ -19,6 +26,7 @@
     background-color: #F8F5F0;
     color: #1E1C1A;
     overflow-x: hidden;
+    font-display: swap;
   }
 
   h1, h2, h3, h4, .font-serif {

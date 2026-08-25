@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
-import { X, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Sparkles, MessageCircle, FileText, CheckCircle2, Send, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { X, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Sparkles, MessageCircle, FileText, CheckCircle2, Send, ArrowLeft, CreditCard } from 'lucide-react';
 import { apiService } from '../services/api';
 
 export default function CartDrawer({
@@ -10,7 +11,7 @@ export default function CartDrawer({
   onRemove,
   whatsappNumber = "+919876543210"
 }) {
-  if (!isOpen) return null;
+  const navigate = useNavigate();
 
   // Reservation Form State
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
@@ -45,6 +46,8 @@ export default function CartDrawer({
   const whatsappCheckoutUrl = `https://wa.me/${cleanWhatsAppNum}?text=${encodeURIComponent(
     `Hello VETRI Concierge, I would like to reserve the following haute joaillerie pieces:\n\n${orderItemsSummary}\n\nTotal Estimated Amount: ${formatPrice(subtotal)}\n\nPlease assist with private reservation and consultation.`
   )}`;
+
+  if (!isOpen) return null;
 
   const handleInputChange = (e) => {
     setCheckoutData({ ...checkoutData, [e.target.name]: e.target.value });
@@ -98,7 +101,7 @@ export default function CartDrawer({
             </div>
             <button
               onClick={onClose}
-              className="p-1 text-[#746F68] hover:text-[#1E1C1A] transition-colors"
+              className="p-1 text-[#5C574F] hover:text-[#1E1C1A] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -119,7 +122,7 @@ export default function CartDrawer({
                 <div className="inline-block bg-[#F8F5F0] border border-[#B8945A]/40 px-3 py-1 text-xs font-semibold tracking-widest text-[#B8945A]">
                   REFERENCE: #{orderRef}
                 </div>
-                <p className="text-xs text-[#746F68] leading-relaxed max-w-xs mx-auto">
+                <p className="text-xs text-[#5C574F] leading-relaxed max-w-xs mx-auto">
                   Your acquisition request has been dispatched to the VETRI Private Concierge. A formal invoice & viewing confirmation has been emailed to <strong>{checkoutData.email}</strong>.
                 </p>
                 <div className="pt-4 border-t border-[#E8DDCD] space-y-2">
@@ -151,7 +154,7 @@ export default function CartDrawer({
                   <button
                     type="button"
                     onClick={() => setShowCheckoutForm(false)}
-                    className="text-xs text-[#746F68] hover:text-[#1E1C1A] flex items-center gap-1 font-medium"
+                    className="text-xs text-[#5C574F] hover:text-[#1E1C1A] flex items-center gap-1 font-medium"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" /> Back to Bag
                   </button>
@@ -265,7 +268,7 @@ export default function CartDrawer({
               <div className="text-center py-12">
                 <ShoppingBag className="w-10 h-10 text-[#E8DDCD] mx-auto mb-2" />
                 <h3 className="font-serif text-base text-[#1E1C1A] mb-1">Your bag is empty</h3>
-                <p className="text-xs text-[#746F68] max-w-xs mx-auto mb-4">
+                <p className="text-xs text-[#5C574F] max-w-xs mx-auto mb-4">
                   Add pieces from our exclusive collections to begin your acquisition.
                 </p>
                 <button
@@ -295,13 +298,13 @@ export default function CartDrawer({
                         </h4>
                         <button
                           onClick={() => onRemove(item.id)}
-                          className="text-[#746F68] hover:text-red-600 p-0.5"
+                          className="text-[#5C574F] hover:text-red-600 p-0.5"
                           title="Remove item"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
-                      <span className="text-[9px] text-[#746F68] uppercase tracking-wider block">
+                      <span className="text-[9px] text-[#5C574F] uppercase tracking-wider block">
                         {item.material}
                       </span>
                     </div>
@@ -311,7 +314,7 @@ export default function CartDrawer({
                       <div className="flex items-center border border-[#E8DDCD]">
                         <button
                           onClick={() => onUpdateQty(item.id, (item.quantity || 1) - 1)}
-                          className="px-1.5 py-0.5 hover:bg-[#F8F5F0] text-[#746F68]"
+                          className="px-1.5 py-0.5 hover:bg-[#F8F5F0] text-[#5C574F]"
                         >
                           <Minus className="w-2.5 h-2.5" />
                         </button>
@@ -320,7 +323,7 @@ export default function CartDrawer({
                         </span>
                         <button
                           onClick={() => onUpdateQty(item.id, (item.quantity || 1) + 1)}
-                          className="px-1.5 py-0.5 hover:bg-[#F8F5F0] text-[#746F68]"
+                          className="px-1.5 py-0.5 hover:bg-[#F8F5F0] text-[#5C574F]"
                         >
                           <Plus className="w-2.5 h-2.5" />
                         </button>
@@ -341,7 +344,7 @@ export default function CartDrawer({
             <div className="p-5 border-t border-[#E8DDCD] bg-[#F8F5F0] space-y-3">
               
               {/* Shipping info */}
-              <div className="flex items-center justify-between text-xs text-[#746F68]">
+              <div className="flex items-center justify-between text-xs text-[#5C574F]">
                 <span>Insured Armoured Courier Delivery:</span>
                 <span className="text-[#B8945A] font-semibold uppercase">COMPLIMENTARY</span>
               </div>
@@ -354,8 +357,21 @@ export default function CartDrawer({
                 </span>
               </div>
 
-              {/* Dual Action Options */}
+              {/* Action Options */}
               <div className="space-y-2 pt-1">
+                {/* Real Cashfree Payment Checkout */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    navigate('/checkout');
+                  }}
+                  className="w-full py-3 bg-[#B8945A] hover:bg-[#a38048] text-white text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
+                >
+                  <CreditCard className="w-3.5 h-3.5 text-white" />
+                  <span>PROCEED TO SECURE CHECKOUT</span>
+                </button>
+
                 {/* Direct Online Reservation */}
                 <button
                   type="button"
@@ -377,7 +393,7 @@ export default function CartDrawer({
                   <span>INSTANT WHATSAPP CONCIERGE ORDER</span>
                 </a>
 
-                <div className="flex items-center justify-center gap-1.5 text-[9px] text-[#746F68] uppercase tracking-wider text-center pt-0.5">
+                <div className="flex items-center justify-center gap-1.5 text-[9px] text-[#5C574F] uppercase tracking-wider text-center pt-0.5">
                   <ShieldCheck className="w-3 h-3 text-[#B8945A]" />
                   <span>Secured By VETRI Haute Joaillerie Guarantee</span>
                 </div>

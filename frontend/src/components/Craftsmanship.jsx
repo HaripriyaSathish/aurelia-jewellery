@@ -44,7 +44,7 @@ export default function Craftsmanship() {
             The Details Make the Difference
           </h2>
 
-          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
+          <p className="text-base sm:text-lg text-[#5C574F] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Behind every piece of VETRI haute joaillerie lies hundreds of hours of patient artisan mastery.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function Craftsmanship() {
                         {pillar.subtitle}
                       </p>
 
-                      <p className="text-sm text-[#746F68] font-normal leading-relaxed">
+                      <p className="text-sm text-[#5C574F] font-normal leading-relaxed">
                         {pillar.description}
                       </p>
                     </div>
@@ -105,7 +105,7 @@ export default function Craftsmanship() {
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#B8945A]" />
                   <span>MASTER ATELIER INSPECTION</span>
                 </div>
-                <p className="text-xs text-[#746F68] font-medium">
+                <p className="text-xs text-[#5C574F] font-medium">
                   Every prong is hand-adjusted under 40x magnification for zero gemstone movement and flawless fire.
                 </p>
               </div>

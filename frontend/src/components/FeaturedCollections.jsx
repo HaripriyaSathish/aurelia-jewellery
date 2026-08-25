@@ -48,7 +48,7 @@ export default function FeaturedCollections({ categories = [], onSelectCategory 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1E1C1A] font-normal tracking-tight mb-3">
             Designed to Be Remembered
           </h2>
-          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
+          <p className="text-base sm:text-lg text-[#5C574F] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Each collection is conceived as an architectural dialogue between pure light, sacred metals, and timeless grace.
           </p>
         </div>

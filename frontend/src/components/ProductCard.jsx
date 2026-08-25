@@ -95,7 +95,7 @@ export default function ProductCard({
       {/* Product Details */}
       <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between text-center bg-[#FFFDF9]">
         <div>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-[#746F68] font-medium block mb-1">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-[#5C574F] font-medium block mb-1">
             {product.category_name || "Haute Joaillerie"}
           </span>
           
@@ -107,7 +107,7 @@ export default function ProductCard({
             {product.name}
           </h3>
 
-          <p className="text-xs text-[#746F68] font-light line-clamp-1 mb-3">
+          <p className="text-xs text-[#5C574F] font-light line-clamp-1 mb-3">
             {product.material}
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function ProductCard({
               {formatPrice(product.price)}
             </span>
             {product.old_price && (
-              <span className="text-xs text-[#746F68]/70 line-through">
+              <span className="text-xs text-[#5C574F]/70 line-through">
                 {formatPrice(product.old_price)}
               </span>
             )}

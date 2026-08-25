@@ -42,7 +42,7 @@ export default function WishlistDrawer({
             </div>
             <button
               onClick={onClose}
-              className="p-1 text-[#746F68] hover:text-[#1E1C1A] transition-colors"
+              className="p-1 text-[#5C574F] hover:text-[#1E1C1A] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -54,7 +54,7 @@ export default function WishlistDrawer({
               <div className="text-center py-16">
                 <Heart className="w-12 h-12 text-[#E8DDCD] mx-auto mb-3" />
                 <h3 className="font-serif text-lg text-[#1E1C1A] mb-1">Your wishlist is empty</h3>
-                <p className="text-xs text-[#746F68] max-w-xs mx-auto mb-6">
+                <p className="text-xs text-[#5C574F] max-w-xs mx-auto mb-6">
                   Explore our curated collections and save your favorite haute joaillerie treasures.
                 </p>
                 <button
@@ -93,13 +93,13 @@ export default function WishlistDrawer({
                         </h4>
                         <button
                           onClick={() => onRemove(item.id)}
-                          className="text-[#746F68] hover:text-red-600 p-0.5 transition-colors"
+                          className="text-[#5C574F] hover:text-red-600 p-0.5 transition-colors"
                           title="Remove"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
-                      <span className="text-[10px] text-[#746F68] uppercase tracking-wider block">
+                      <span className="text-[10px] text-[#5C574F] uppercase tracking-wider block">
                         {item.material}
                       </span>
                     </div>
