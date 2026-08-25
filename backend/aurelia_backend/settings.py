@@ -140,6 +140,11 @@ CASHFREE_APP_ID = os.getenv('CASHFREE_APP_ID', '')
 CASHFREE_SECRET_KEY = os.getenv('CASHFREE_SECRET_KEY', '')
 CASHFREE_ENV = os.getenv('CASHFREE_ENV', 'TEST')  # 'TEST' or 'PRODUCTION'
 
+# GST rate applied at checkout (split evenly into CGST + SGST for the invoice).
+# Default 3% matches the standard GST slab for gold/diamond jewellery in India.
+GST_RATE = float(os.getenv('GST_RATE', '0.03'))
+GSTIN = os.getenv('GSTIN', '')  # your business GSTIN, shown on the invoice PDF if set
+
 # WhatsApp Business Cloud API (optional — click-to-chat links work without this)
 WHATSAPP_CLOUD_TOKEN = os.getenv('WHATSAPP_CLOUD_TOKEN', '')
 WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', '')

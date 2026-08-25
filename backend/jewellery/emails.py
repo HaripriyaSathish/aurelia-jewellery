@@ -108,8 +108,13 @@ VETRI FINE JEWELLERY
 
 def send_order_confirmation_email(order):
     """
-    Sends an order confirmation email once payment is confirmed.
+    Sends an order confirmation email once payment is confirmed, with
+    a GST tax invoice PDF attached (line items, CGST/SGST, transaction
+    ID, payment mode).
     """
+    from django.core.mail import EmailMessage
+    from orders.invoice import generate_invoice_pdf
+
     items_lines = "\n".join(
         f"- {item.product_name} (Qty: {item.quantity}) - Rs. {item.price}"
         for item in order.items.all()
@@ -121,25 +126,36 @@ Dear {order.customer_name},
 Thank you for your order with VETRI Fine Jewellery. Your payment has been received and your order is now confirmed.
 
 Order Number: {order.order_number}
+Transaction ID: {order.transaction_id or 'N/A'}
+Payment Mode: {order.payment_method or 'N/A'}
+
 Items:
 {items_lines}
 
+Subtotal: Rs. {order.subtotal}
+CGST: Rs. {order.cgst_amount}
+SGST: Rs. {order.sgst_amount}
 Total Paid: Rs. {order.total_amount}
 
-You can track your order anytime using your order number and email/phone on our website, or message us on WhatsApp.
+Your tax invoice is attached to this email as a PDF. You can track your order anytime using your order number and email/phone on our website, or message us on WhatsApp.
 
 With warm regards,
 The Concierge Team
 VETRI FINE JEWELLERY
 """
     try:
-        send_mail(
+        email = EmailMessage(
             subject=subject,
-            message=message,
+            body=message,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[order.customer_email],
-            fail_silently=False,
+            to=[order.customer_email],
         )
+        try:
+            pdf_buffer = generate_invoice_pdf(order)
+            email.attach(f"Invoice-{order.order_number}.pdf", pdf_buffer.read(), "application/pdf")
+        except Exception as e:
+            logger.warning(f"Invoice PDF could not be generated for {order.order_number}: {e}")
+        email.send(fail_silently=False)
     except Exception as e:
         logger.warning(f"Order confirmation email could not be sent: {e}")
 

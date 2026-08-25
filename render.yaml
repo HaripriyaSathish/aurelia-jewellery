@@ -32,3 +32,13 @@
       # Leave unset to keep the rule-based offers/order-tracking replies only.
       - key: GROQ_API_KEY
         sync: false
+      - key: GST_RATE
+        value: "0.03"
+      - key: GSTIN
+        sync: false
+      # Optional: enables automated WhatsApp order-status messages.
+      # Requires a Meta Business + WhatsApp API setup — see backend/.env.example.
+      - key: WHATSAPP_CLOUD_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false

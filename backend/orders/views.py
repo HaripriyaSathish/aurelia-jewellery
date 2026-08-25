@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from jewellery.emails import send_order_confirmation_email
-from .cashfree import create_payment_order, get_payment_order, CashfreeError
-from .models import Order, OrderItem, OrderStatusEvent
+from .cashfree import create_payment_order, get_payment_order, get_order_payments, CashfreeError
+from .models import Order, OrderItem
 from .serializers import CreateOrderSerializer, OrderSerializer
 
 
@@ -25,6 +25,8 @@ class CreateOrderView(APIView):
         payload = serializer.validated_data
 
         subtotal = sum(Decimal(str(i['price'])) * i['quantity'] for i in payload['items'])
+        tax_amount = (subtotal * Decimal(str(settings.GST_RATE))).quantize(Decimal('0.01'))
+        total_amount = subtotal + tax_amount
 
         order = Order.objects.create(
             user=request.user if request.user.is_authenticated else None,
@@ -35,7 +37,8 @@ class CreateOrderView(APIView):
             city=payload.get('city', ''),
             notes=payload.get('notes', ''),
             subtotal=subtotal,
-            total_amount=subtotal,
+            tax_amount=tax_amount,
+            total_amount=total_amount,
         )
 
         for item in payload['items']:
@@ -47,8 +50,6 @@ class CreateOrderView(APIView):
                 price=item['price'],
                 quantity=item['quantity'],
             )
-
-        OrderStatusEvent.objects.create(order=order, status='PENDING', note='Order created, awaiting payment.')
 
         try:
             cf_data = create_payment_order(order)
@@ -97,13 +98,19 @@ class VerifyPaymentView(APIView):
 
         if cf_status == 'PAID' and order.status == 'PENDING':
             order.status = 'PAID'
-            OrderStatusEvent.objects.create(order=order, status='PAID', note='Payment received via Cashfree.')
+
+            payments = get_order_payments(order.cashfree_order_id or order.order_number)
+            successful_payment = next((p for p in payments if p.get('payment_status') == 'SUCCESS'), None)
+            if successful_payment:
+                order.transaction_id = str(successful_payment.get('cf_payment_id', ''))
+                payment_group = (successful_payment.get('payment_group') or '').replace('_', ' ')
+                order.payment_method = payment_group.title()
+
             send_order_confirmation_email(order)
         elif cf_status in ('EXPIRED', 'TERMINATED', 'FAILED') and order.status == 'PENDING':
             order.status = 'FAILED'
-            OrderStatusEvent.objects.create(order=order, status='FAILED', note=f'Cashfree reported status: {cf_status}.')
 
-        order.save(update_fields=['cashfree_payment_status', 'status', 'updated_at'])
+        order.save(update_fields=['cashfree_payment_status', 'status', 'transaction_id', 'payment_method', 'updated_at'])
 
         return Response(OrderSerializer(order).data)
 
