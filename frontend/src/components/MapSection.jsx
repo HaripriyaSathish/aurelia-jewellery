@@ -33,7 +33,7 @@ export default function MapSection({ settings }) {
             Visit Our Boutique
           </h2>
 
-          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
+          <p className="text-base sm:text-lg text-[#5C574F] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Experience our private diamond salon and preview high jewellery creations in person.
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function MapSection({ settings }) {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-[#B8945A] flex-shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold uppercase tracking-wider text-[#746F68] block text-[10px] sm:text-xs mb-0.5">
+                    <span className="font-bold uppercase tracking-wider text-[#5C574F] block text-[10px] sm:text-xs mb-0.5">
                       Boutique Address
                     </span>
                     <p className="text-sm leading-relaxed text-[#1E1C1A] font-medium">
@@ -71,7 +71,7 @@ export default function MapSection({ settings }) {
                 <div className="flex items-start gap-3">
                   <Clock className="w-4 h-4 text-[#B8945A] flex-shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold uppercase tracking-wider text-[#746F68] block text-[10px] sm:text-xs mb-0.5">
+                    <span className="font-bold uppercase tracking-wider text-[#5C574F] block text-[10px] sm:text-xs mb-0.5">
                       Opening Hours
                     </span>
                     <p className="text-sm leading-relaxed text-[#1E1C1A]">
@@ -84,7 +84,7 @@ export default function MapSection({ settings }) {
                 <div className="flex items-start gap-3">
                   <Phone className="w-4 h-4 text-[#B8945A] flex-shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold uppercase tracking-wider text-[#746F68] block text-[10px] sm:text-xs mb-0.5">
+                    <span className="font-bold uppercase tracking-wider text-[#5C574F] block text-[10px] sm:text-xs mb-0.5">
                       Private Salon Telephone
                     </span>
                     <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="text-sm text-[#1E1C1A] hover:text-[#B8945A] font-medium">
@@ -97,7 +97,7 @@ export default function MapSection({ settings }) {
                 <div className="flex items-start gap-3">
                   <Mail className="w-4 h-4 text-[#B8945A] flex-shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold uppercase tracking-wider text-[#746F68] block text-[10px] sm:text-xs mb-0.5">
+                    <span className="font-bold uppercase tracking-wider text-[#5C574F] block text-[10px] sm:text-xs mb-0.5">
                       Concierge Email
                     </span>
                     <a href={`mailto:${email}`} className="text-sm text-[#1E1C1A] hover:text-[#B8945A] font-medium">

@@ -69,6 +69,81 @@ Website: https://aureliajewels.com
         logger.warning(f"Customer acknowledgement email could not be sent: {e}")
 
 
+def send_password_reset_email(user, uid, token):
+    """
+    Sends a password reset link to the customer. The link points at the
+    frontend reset-password page, which reads uid/token from the URL and
+    posts them to /api/auth/reset-password/.
+    """
+    frontend_url = getattr(settings, 'FRONTEND_URL', 'http://localhost:5173').rstrip('/')
+    reset_link = f"{frontend_url}/reset-password?uid={uid}&token={token}"
+
+    subject = "Reset your AURELIA Fine Jewellery password"
+    message = f"""
+Hello {user.first_name or user.get_username()},
+
+We received a request to reset the password for your AURELIA account.
+
+Click the link below to choose a new password. This link is valid for a limited time and can only be used once:
+
+{reset_link}
+
+If you did not request a password reset, you can safely ignore this email.
+
+With warm regards,
+The Concierge Team
+AURELIA FINE JEWELLERY
+"""
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
+    except Exception as e:
+        logger.warning(f"Password reset email could not be sent: {e}")
+
+
+def send_order_confirmation_email(order):
+    """
+    Sends an order confirmation email once payment is confirmed.
+    """
+    items_lines = "\n".join(
+        f"- {item.product_name} (Qty: {item.quantity}) - Rs. {item.price}"
+        for item in order.items.all()
+    )
+    subject = f"Your AURELIA order {order.order_number} is confirmed"
+    message = f"""
+Dear {order.customer_name},
+
+Thank you for your order with AURELIA Fine Jewellery. Your payment has been received and your order is now confirmed.
+
+Order Number: {order.order_number}
+Items:
+{items_lines}
+
+Total Paid: Rs. {order.total_amount}
+
+You can track your order anytime using your order number and email/phone on our website, or message us on WhatsApp.
+
+With warm regards,
+The Concierge Team
+AURELIA FINE JEWELLERY
+"""
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[order.customer_email],
+            fail_silently=False,
+        )
+    except Exception as e:
+        logger.warning(f"Order confirmation email could not be sent: {e}")
+
+
 def send_newsletter_welcome_email(email):
     """
     Sends a warm welcome acknowledgement email to the new newsletter subscriber.

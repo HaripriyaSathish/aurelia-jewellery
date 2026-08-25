@@ -47,7 +47,7 @@ export default function BestsellerSection({
             Our Most Loved Pieces
           </h2>
 
-          <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
+          <p className="text-base sm:text-lg text-[#5C574F] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
             Each creation is an embodiment of precision, balanced geometry, and rare luminescent stones.
           </p>
 
@@ -63,7 +63,7 @@ export default function BestsellerSection({
                 className={`px-3.5 sm:px-4 py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase transition-all duration-300 ${
                   activeTab === tab.id
                     ? 'bg-[#1E1C1A] text-white border-b-2 border-[#B8945A] shadow-sm'
-                    : 'bg-[#FFFDF9] text-[#746F68] hover:text-[#1E1C1A] border border-[#E8DDCD]'
+                    : 'bg-[#FFFDF9] text-[#5C574F] hover:text-[#1E1C1A] border border-[#E8DDCD]'
                 }`}
               >
                 {tab.label}
@@ -88,7 +88,7 @@ export default function BestsellerSection({
 
         {/* Bottom Editorial Callout */}
         <div className="mt-10 text-center">
-          <p className="text-sm text-[#746F68] uppercase tracking-[0.25em] font-medium mb-2">
+          <p className="text-sm text-[#5C574F] uppercase tracking-[0.25em] font-medium mb-2">
             BESPOKE COMMISSIONS & PRIVATE VAULT APPOINTMENTS AVAILABLE
           </p>
           <a

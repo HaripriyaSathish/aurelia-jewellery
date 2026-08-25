@@ -1,6 +1,8 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Search, Heart, ShoppingBag, Menu, X, Phone, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Search, Heart, ShoppingBag, Menu, X, Phone, Compass, User } from 'lucide-react';
 import logoImg from '../assets/vetri-logo.jpg';
+import { useAuth } from '../context/AuthContext';
 
 export default function Navbar({
   wishlistCount = 0,
@@ -10,6 +12,7 @@ export default function Navbar({
   onOpenCart,
   settings
 }) {
+  const { user } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -27,11 +30,12 @@ export default function Navbar({
   }, []);
 
   const navLinks = [
-    { name: 'HOME', href: '#home' },
-    { name: 'COLLECTIONS', href: '#collections' },
-    { name: 'OUR STORY', href: '#story' },
-    { name: 'JOURNAL', href: '#campaign' },
-    { name: 'CONTACT', href: '#contact' },
+    { name: 'HOME', href: '/#home' },
+    { name: 'COLLECTIONS', href: '/#collections' },
+    { name: 'OUR STORY', href: '/#story' },
+    { name: 'JOURNAL', href: '/#campaign' },
+    { name: 'CONTACT', href: '/#contact' },
+    { name: 'TRACK ORDER', href: '/order-tracking' },
   ];
 
   return (
@@ -60,35 +64,49 @@ export default function Navbar({
 
           {/* Left: Logo */}
           <div className="flex items-center">
-            <a href="#home" className="inline-flex items-center group">
+            <Link to="/" className="inline-flex items-center group">
                 <img
                 src={logoImg}
                 alt="Vetri Jewelers"
                 className="h-16 sm:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
-            </a>
+            </Link>
           </div>
 
                    {/* Centered Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-[12px] font-medium tracking-[0.25em] transition-all duration-300 relative group py-1 ${
-                  isScrolled
-                    ? 'text-[#1E1C1A] hover:text-[#B8945A]'
-                    : 'text-white/90 hover:text-white'
-                }`}
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B8945A] transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith('/#');
+              const linkClass = `text-[12px] font-medium tracking-[0.25em] transition-all duration-300 relative group py-1 ${
+                isScrolled ? 'text-[#1E1C1A] hover:text-[#B8945A]' : 'text-white/90 hover:text-white'
+              }`;
+              return isHash ? (
+                <a key={link.name} href={link.href} className={linkClass}>
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B8945A] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              ) : (
+                <Link key={link.name} to={link.href} className={linkClass}>
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#B8945A] transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Actions */}
           <div className="flex items-center space-x-5 sm:space-x-7">
+
+            {/* Account Trigger */}
+            <Link
+              to={user ? '/account' : '/login'}
+              className={`p-1.5 transition-colors hover:scale-105 duration-200 ${
+                isScrolled ? 'text-[#1E1C1A] hover:text-[#B8945A]' : 'text-white hover:text-[#E8DDCD]'
+              }`}
+              title={user ? 'My Account' : 'Sign In'}
+            >
+              <User className="w-4 h-4 sm:w-5 sm:h-5" />
+            </Link>
 
             {/* Search Trigger */}
             <button
@@ -155,7 +173,7 @@ export default function Navbar({
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 text-[#746F68] hover:text-[#1E1C1A] transition-colors"
+                  className="p-1.5 text-[#5C574F] hover:text-[#1E1C1A] transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -163,16 +181,26 @@ export default function Navbar({
 
               {/* Navigation Links */}
               <nav className="mt-8 space-y-5">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block text-sm font-medium tracking-[0.2em] text-[#1E1C1A] hover:text-[#B8945A] transition-colors py-1 border-b border-[#E8DDCD]/40"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {navLinks.map((link) => {
+                  const isHash = link.href.startsWith('/#');
+                  const linkClass = "block text-sm font-medium tracking-[0.2em] text-[#1E1C1A] hover:text-[#B8945A] transition-colors py-1 border-b border-[#E8DDCD]/40";
+                  return isHash ? (
+                    <a key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className={linkClass}>
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link key={link.name} to={link.href} onClick={() => setMobileMenuOpen(false)} className={linkClass}>
+                      {link.name}
+                    </Link>
+                  );
+                })}
+                <Link
+                  to={user ? '/account' : '/login'}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-sm font-medium tracking-[0.2em] text-[#1E1C1A] hover:text-[#B8945A] transition-colors py-1 border-b border-[#E8DDCD]/40"
+                >
+                  {user ? 'MY ACCOUNT' : 'SIGN IN / REGISTER'}
+                </Link>
               </nav>
             </div>
 

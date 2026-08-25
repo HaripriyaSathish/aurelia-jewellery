@@ -7,9 +7,9 @@ export default function SearchModal({
   products = [],
   onQuickView
 }) {
-  if (!isOpen) return null;
-
   const [query, setQuery] = useState('');
+
+  if (!isOpen) return null;
 
   const formatPrice = (val) => {
     if (!val) return '';
@@ -43,7 +43,7 @@ export default function SearchModal({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-[#746F68] hover:text-[#1E1C1A]"
+          className="absolute top-4 right-4 p-2 text-[#5C574F] hover:text-[#1E1C1A]"
         >
           <X className="w-5 h-5" />
         </button>
@@ -59,7 +59,7 @@ export default function SearchModal({
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search diamonds, rings, gold, necklaces..."
               autoFocus
-              className="w-full pl-11 pr-4 py-3.5 bg-[#F8F5F0] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68] focus:outline-none focus:border-[#B8945A] transition-colors"
+              className="w-full pl-11 pr-4 py-3.5 bg-[#F8F5F0] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#5C574F] focus:outline-none focus:border-[#B8945A] transition-colors"
             />
             <Search className="w-5 h-5 text-[#B8945A] absolute left-3.5 top-1/2 -translate-y-1/2" />
           </div>
@@ -67,14 +67,14 @@ export default function SearchModal({
 
         {/* Results */}
         <div>
-          <div className="flex items-center justify-between mb-3 text-xs text-[#746F68]">
+          <div className="flex items-center justify-between mb-3 text-xs text-[#5C574F]">
             <span>{query ? `Results for "${query}"` : "Suggested Creations"}</span>
             <span>{filtered.length} items</span>
           </div>
 
           <div className="divide-y divide-[#E8DDCD]/60 max-h-80 overflow-y-auto pr-1">
             {filtered.length === 0 ? (
-              <div className="text-center py-10 text-[#746F68] text-xs">
+              <div className="text-center py-10 text-[#5C574F] text-xs">
                 No matching haute joaillerie found. Try searching for "Diamond", "Gold", or "Necklace".
               </div>
             ) : (
@@ -97,7 +97,7 @@ export default function SearchModal({
                       <h4 className="font-serif text-sm font-medium text-[#1E1C1A] group-hover:text-[#B8945A] transition-colors">
                         {item.name}
                       </h4>
-                      <span className="text-[10px] text-[#746F68] uppercase tracking-wider block">
+                      <span className="text-[10px] text-[#5C574F] uppercase tracking-wider block">
                         {item.category_name} • {item.material}
                       </span>
                     </div>

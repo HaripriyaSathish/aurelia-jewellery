@@ -11,6 +11,39 @@ const apiClient = axios.create({
   timeout: 10000,
 });
 
+// Attach the JWT access token (if the customer is logged in) to every request
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('aurelia_access_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// On a 401, try one silent refresh using the stored refresh token, then retry the request once
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const original = error.config;
+    if (error.response?.status === 401 && !original._retry) {
+      original._retry = true;
+      const refreshToken = localStorage.getItem('aurelia_refresh_token');
+      if (refreshToken) {
+        try {
+          const { data } = await axios.post(`${API_BASE_URL}/auth/token/refresh/`, { refresh: refreshToken });
+          localStorage.setItem('aurelia_access_token', data.access);
+          original.headers.Authorization = `Bearer ${data.access}`;
+          return apiClient(original);
+        } catch {
+          localStorage.removeItem('aurelia_access_token');
+          localStorage.removeItem('aurelia_refresh_token');
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Fallback Mock Data with 100% verified live images
 export const fallbackData = {
   settings: {
@@ -321,6 +354,78 @@ export const apiService = {
       };
     }
   }
+};
+
+export const authService = {
+  async register(payload) {
+    const response = await apiClient.post('/auth/register/', payload);
+    return response.data;
+  },
+
+  async login(email, password) {
+    const response = await apiClient.post('/auth/login/', { email, password });
+    return response.data;
+  },
+
+  async me() {
+    const response = await apiClient.get('/auth/me/');
+    return response.data;
+  },
+
+  async updateMe(payload) {
+    const response = await apiClient.patch('/auth/me/', payload);
+    return response.data;
+  },
+
+  async forgotPassword(email) {
+    const response = await apiClient.post('/auth/forgot-password/', { email });
+    return response.data;
+  },
+
+  async resetPassword(uid, token, new_password) {
+    const response = await apiClient.post('/auth/reset-password/', { uid, token, new_password });
+    return response.data;
+  },
+};
+
+export const orderService = {
+  async createOrder(payload) {
+    const response = await apiClient.post('/orders/create/', payload);
+    return response.data;
+  },
+
+  async verifyPayment(orderNumber) {
+    const response = await apiClient.post(`/orders/verify/${orderNumber}/`);
+    return response.data;
+  },
+
+  async trackOrder({ orderNumber, email, phone }) {
+    const response = await apiClient.get('/orders/track/', {
+      params: { order_number: orderNumber, email, phone },
+    });
+    return response.data;
+  },
+
+  async myOrders() {
+    const response = await apiClient.get('/orders/my/');
+    return response.data;
+  },
+};
+
+export const chatbotService = {
+  async sendMessage(message, context = {}) {
+    try {
+      const response = await apiClient.post('/chatbot/message/', { message, context });
+      return response.data;
+    } catch (error) {
+      return {
+        success: true,
+        reply: "I'm having trouble connecting right now — please try again in a moment, or reach our concierge on WhatsApp.",
+        quick_replies: ['Talk on WhatsApp'],
+        context: {},
+      };
+    }
+  },
 };
 
 export default apiService;

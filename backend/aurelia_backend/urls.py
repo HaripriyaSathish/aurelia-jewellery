@@ -12,6 +12,9 @@ admin.site.index_title = "Haute Joaillerie Management & Boutique Operations"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('jewellery.urls')),
+    path('api/auth/', include('accounts.urls')),
+    path('api/orders/', include('orders.urls')),
+    path('api/chatbot/', include('chatbot.urls')),
 ]
 
 if settings.DEBUG:

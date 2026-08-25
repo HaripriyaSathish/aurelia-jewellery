@@ -79,7 +79,7 @@ export default function ContactSection({ settings }) {
                 Begin Your Story With Us
               </h2>
 
-              <p className="text-sm sm:text-base text-[#746F68] font-normal leading-relaxed mb-6">
+              <p className="text-sm sm:text-base text-[#5C574F] font-normal leading-relaxed mb-6">
                 Whether you are choosing a timeless piece, planning a special gift, or searching for something uniquely yours, our jewellery specialists are here to help.
               </p>
 
@@ -90,7 +90,7 @@ export default function ContactSection({ settings }) {
                     <Phone className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">Telephone:</span>
+                    <span className="text-sm text-[#5C574F] uppercase tracking-wider block font-bold">Telephone:</span>
                     <a href={`tel:${cleanPhone}`} className="text-sm font-bold text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
                       {phone}
                     </a>
@@ -102,7 +102,7 @@ export default function ContactSection({ settings }) {
                     <MessageCircle className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">WhatsApp Direct:</span>
+                    <span className="text-sm text-[#5C574F] uppercase tracking-wider block font-bold">WhatsApp Direct:</span>
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#1E1C1A] hover:text-[#25D366] transition-colors">
                       {whatsapp}
                     </a>
@@ -114,7 +114,7 @@ export default function ContactSection({ settings }) {
                     <Mail className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">Email:</span>
+                    <span className="text-sm text-[#5C574F] uppercase tracking-wider block font-bold">Email:</span>
                     <a href={`mailto:${email}`} className="text-sm font-bold text-[#1E1C1A] hover:text-[#B8945A] transition-colors">
                       {email}
                     </a>
@@ -126,7 +126,7 @@ export default function ContactSection({ settings }) {
                     <MapPin className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-sm text-[#746F68] uppercase tracking-wider block font-bold">Boutique:</span>
+                    <span className="text-sm text-[#5C574F] uppercase tracking-wider block font-bold">Boutique:</span>
                     <span className="text-sm font-bold text-[#1E1C1A]">
                       {address}
                     </span>
@@ -179,7 +179,7 @@ export default function ContactSection({ settings }) {
                     <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1E1C1A]">
                       Enquiry Received With Grace
                     </h4>
-                    <p className="text-xs text-[#746F68] mt-0.5 leading-relaxed">
+                    <p className="text-xs text-[#5C574F] mt-0.5 leading-relaxed">
                       Thank you for contacting VETRI. An acknowledgement email has been dispatched. Our private concierge will reach out within 24 hours.
                     </p>
                   </div>
@@ -209,7 +209,7 @@ export default function ContactSection({ settings }) {
                     onChange={handleChange}
                     required
                     placeholder="e.g. Eleanor Vance"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#5C574F]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
 
@@ -224,7 +224,7 @@ export default function ContactSection({ settings }) {
                     onChange={handleChange}
                     required
                     placeholder="e.g. eleanor@example.com"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#5C574F]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function ContactSection({ settings }) {
                     onChange={handleChange}
                     required
                     placeholder="e.g. +91 98765 43210"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#5C574F]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
 
@@ -255,7 +255,7 @@ export default function ContactSection({ settings }) {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="e.g. Diamond Solitaire / Bridal Suite"
-                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                    className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#5C574F]/60 focus:outline-none focus:border-[#B8945A]"
                   />
                 </div>
               </div>
@@ -271,7 +271,7 @@ export default function ContactSection({ settings }) {
                   required
                   rows="3"
                   placeholder="Kindly detail the creations, gemstones, or bespoke requirements you wish to explore..."
-                  className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#746F68]/60 focus:outline-none focus:border-[#B8945A]"
+                  className="w-full px-3.5 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] placeholder-[#5C574F]/60 focus:outline-none focus:border-[#B8945A]"
                 ></textarea>
               </div>
 

@@ -1,4 +1,5 @@
-﻿from pathlib import Path
+﻿from datetime import timedelta
+from pathlib import Path
 import os
 from dotenv import load_dotenv
 
@@ -23,10 +24,14 @@ INSTALLED_APPS = [
     
     # Third party
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
-    
+
     # Custom apps
     'jewellery',
+    'accounts',
+    'orders',
+    'chatbot',
 ]
 
 MIDDLEWARE = [
@@ -111,11 +116,37 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+    'ROTATE_REFRESH_TOKENS': True,
+}
+
+# Frontend base URL, used to build password-reset and payment-return links
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+
+# Cashfree Payment Gateway (Test/Sandbox mode by default)
+CASHFREE_APP_ID = os.getenv('CASHFREE_APP_ID', '')
+CASHFREE_SECRET_KEY = os.getenv('CASHFREE_SECRET_KEY', '')
+CASHFREE_ENV = os.getenv('CASHFREE_ENV', 'TEST')  # 'TEST' or 'PRODUCTION'
+
+# WhatsApp Business Cloud API (optional — click-to-chat links work without this)
+WHATSAPP_CLOUD_TOKEN = os.getenv('WHATSAPP_CLOUD_TOKEN', '')
+WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', '')
+
+# Anthropic API key for the AI chatbot's open-ended answers (optional —
+# rule-based offers/order-tracking replies work without it)
+ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY', '')
 
 # Email Settings
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')

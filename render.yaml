@@ -17,3 +17,18 @@
         value: ".onrender.com,localhost,127.0.0.1"
       - key: EMAIL_BACKEND
         value: django.core.mail.backends.console.EmailBackend
+      - key: FRONTEND_URL
+        value: "https://aurelia-jewellery.onrender.com"
+      # Cashfree TEST-mode credentials — set these in the Render dashboard
+      # (Environment tab) after creating a free test account at
+      # https://merchant.cashfree.com/merchants/signup
+      - key: CASHFREE_APP_ID
+        sync: false
+      - key: CASHFREE_SECRET_KEY
+        sync: false
+      - key: CASHFREE_ENV
+        value: "TEST"
+      # Optional: enables open-ended AI answers in the chatbot widget.
+      # Leave unset to keep the rule-based offers/order-tracking replies only.
+      - key: ANTHROPIC_API_KEY
+        sync: false
