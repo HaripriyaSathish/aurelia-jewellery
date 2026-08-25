@@ -68,13 +68,13 @@ export default function Navbar({
                 <img
                 src={logoImg}
                 alt="Vetri Jewelers"
-                className="h-16 sm:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
           </div>
 
                    {/* Centered Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8 flex-shrink-0">
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5 flex-shrink-0">
             {navLinks.map((link) => {
               const isHash = link.href.startsWith('/#');
               const linkClass = `text-[12px] font-medium tracking-[0.15em] xl:tracking-[0.25em] whitespace-nowrap transition-all duration-300 relative group py-1 ${
@@ -174,7 +174,7 @@ export default function Navbar({
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#E8DDCD]">
                 <div>
-                  <img src={logoImg} alt="Vetri Jewelers" className="h-16 w-auto object-contain" />
+                  <img src={logoImg} alt="Vetri Jewelers" className="h-16 w-auto object-contain mix-blend-multiply" />
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
