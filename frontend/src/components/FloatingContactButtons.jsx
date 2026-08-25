@@ -7,14 +7,14 @@ export default function FloatingContactButtons({ settings }) {
 
   const phone = settings?.phone_number || "+91 98765 43210";
   const whatsapp = settings?.whatsapp_number || "+91 98765 43210";
-  const email = settings?.email || "hello@aureliajewels.com";
+  const email = settings?.email || "hello@vetrijewels.com";
 
   const cleanPhone = phone.replace(/[^0-9+]/g, '');
   const cleanWhatsApp = whatsapp.replace(/[^0-9]/g, '');
-  const whatsappMessage = settings?.whatsapp_message || "Hello AURELIA, I would like to know more about your jewellery collection.";
+  const whatsappMessage = settings?.whatsapp_message || "Hello VETRI, I would like to know more about your jewellery collection.";
   const whatsappUrl = `https://wa.me/${cleanWhatsApp}?text=${encodeURIComponent(whatsappMessage)}`;
   const callUrl = `tel:${cleanPhone}`;
-  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent("Inquiry regarding AURELIA Fine Jewellery")}`;
+  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent("Inquiry regarding VETRI Fine Jewellery")}`;
 
   useEffect(() => {
     const handleScroll = () => {

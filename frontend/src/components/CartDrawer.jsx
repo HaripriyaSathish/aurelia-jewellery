@@ -43,7 +43,7 @@ export default function CartDrawer({
   const cleanWhatsAppNum = whatsappNumber.replace(/[^0-9]/g, '');
   const orderItemsSummary = cart.map(item => `${item.name} (Qty: ${item.quantity || 1}) - ${formatPrice(item.price)}`).join('\n');
   const whatsappCheckoutUrl = `https://wa.me/${cleanWhatsAppNum}?text=${encodeURIComponent(
-    `Hello AURELIA Concierge, I would like to reserve the following haute joaillerie pieces:\n\n${orderItemsSummary}\n\nTotal Estimated Amount: ${formatPrice(subtotal)}\n\nPlease assist with private reservation and consultation.`
+    `Hello VETRI Concierge, I would like to reserve the following haute joaillerie pieces:\n\n${orderItemsSummary}\n\nTotal Estimated Amount: ${formatPrice(subtotal)}\n\nPlease assist with private reservation and consultation.`
   )}`;
 
   const handleInputChange = (e) => {
@@ -120,7 +120,7 @@ export default function CartDrawer({
                   REFERENCE: #{orderRef}
                 </div>
                 <p className="text-xs text-[#746F68] leading-relaxed max-w-xs mx-auto">
-                  Your acquisition request has been dispatched to the AURELIA Private Concierge. A formal invoice & viewing confirmation has been emailed to <strong>{checkoutData.email}</strong>.
+                  Your acquisition request has been dispatched to the VETRI Private Concierge. A formal invoice & viewing confirmation has been emailed to <strong>{checkoutData.email}</strong>.
                 </p>
                 <div className="pt-4 border-t border-[#E8DDCD] space-y-2">
                   <a
@@ -379,7 +379,7 @@ export default function CartDrawer({
 
                 <div className="flex items-center justify-center gap-1.5 text-[9px] text-[#746F68] uppercase tracking-wider text-center pt-0.5">
                   <ShieldCheck className="w-3 h-3 text-[#B8945A]" />
-                  <span>Secured By AURELIA Haute Joaillerie Guarantee</span>
+                  <span>Secured By VETRI Haute Joaillerie Guarantee</span>
                 </div>
               </div>
 

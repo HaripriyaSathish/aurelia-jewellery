@@ -4,10 +4,10 @@ import { Compass, ArrowUp, Phone, Mail, MapPin } from 'lucide-react';
 export default function Footer({ settings }) {
   const address = settings?.address || "123 Luxury Street, Chennai, Tamil Nadu, India";
   const phone = settings?.phone_number || "+91 98765 43210";
-  const email = settings?.email || "hello@aureliajewels.com";
-  const instagram = settings?.instagram_url || "https://instagram.com/aureliajewels";
-  const facebook = settings?.facebook_url || "https://facebook.com/aureliajewels";
-  const pinterest = settings?.pinterest_url || "https://pinterest.com/aureliajewels";
+  const email = settings?.email || "hello@vetrijewels.com";
+  const instagram = settings?.instagram_url || "https://instagram.com/vetrijewels";
+  const facebook = settings?.facebook_url || "https://facebook.com/vetrijewels";
+  const pinterest = settings?.pinterest_url || "https://pinterest.com/vetrijewels";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -13,7 +13,7 @@ export default function EditorialSection() {
             <div className="relative z-10 overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-[#E8DDCD]">
               <img
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop"
-                alt="AURELIA Haute Joaillerie Model Portrait"
+                alt="VETRI Haute Joaillerie Model Portrait"
                 className="w-full h-[400px] sm:h-[480px] object-cover object-center filter contrast-[1.02] hover:scale-102 transition-transform duration-700"
               />
             </div>
@@ -50,7 +50,7 @@ export default function EditorialSection() {
             </p>
 
             <p className="text-sm sm:text-base text-[#746F68] font-normal leading-relaxed mb-6">
-              At AURELIA, haute joaillerie is elevated beyond ornament into wearable artistry. Each mastercut stone is ethically sourced and meticulously set by master artisans who have preserved generational lapidary traditions, creating heirlooms that transcend time.
+              At VETRI, haute joaillerie is elevated beyond ornament into wearable artistry. Each mastercut stone is ethically sourced and meticulously set by master artisans who have preserved generational lapidary traditions, creating heirlooms that transcend time.
             </p>
 
             {/* Hallmarks List */}

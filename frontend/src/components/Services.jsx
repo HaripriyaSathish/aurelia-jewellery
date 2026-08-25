@@ -12,7 +12,7 @@ export default function Services() {
     {
       title: 'Lifetime Care',
       subtitle: 'Complimentary Cleaning & Servicing',
-      description: 'Annual ultrasonic cleaning, prong tightening, and rhodium re-plating for all AURELIA fine jewellery pieces.',
+      description: 'Annual ultrasonic cleaning, prong tightening, and rhodium re-plating for all VETRI fine jewellery pieces.',
       icon: ShieldCheck,
     },
     {
@@ -48,7 +48,7 @@ export default function Services() {
           </h2>
 
           <p className="text-sm text-[#746F68] font-normal max-w-xl mx-auto font-cormorant text-xl italic">
-            Your journey with AURELIA extends far beyond the moment of acquisition.
+            Your journey with VETRI extends far beyond the moment of acquisition.
           </p>
         </div>
 

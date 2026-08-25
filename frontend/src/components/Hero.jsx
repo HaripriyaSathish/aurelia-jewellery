@@ -14,7 +14,7 @@ export default function Hero({ heroData }) {
       <div className="absolute inset-0 z-0">
         <img
           src={imageUrl}
-          alt="AURELIA Fine Jewellery Haute Joaillerie"
+          alt="VETRI Fine Jewellery Haute Joaillerie"
           className="w-full h-full object-cover object-center animate-kenburns scale-105 filter brightness-85 contrast-105"
         />
         {/* Subtle Luxury Overlays */}

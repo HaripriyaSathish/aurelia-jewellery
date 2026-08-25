@@ -8,7 +8,7 @@ export default function CampaignSection() {
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1920&auto=format&fit=crop"
-          alt="AURELIA Haute Joaillerie Campaign"
+          alt="VETRI Haute Joaillerie Campaign"
           className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-1000 ease-out filter brightness-75"
         />
         {/* Subtle Luxury Gradient Vignette */}

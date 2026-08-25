@@ -2,11 +2,11 @@
 import { MapPin, Clock, Phone, Mail, Navigation, Compass } from 'lucide-react';
 
 export default function MapSection({ settings }) {
-  const shopName = settings?.shop_name || "AURELIA FINE JEWELLERY";
+  const shopName = settings?.shop_name || "VETRI FINE JEWELLERY";
   const address = settings?.address || "123 Luxury Street, Chennai, Tamil Nadu, India";
   const openingHours = settings?.opening_hours || "Mon – Sat: 10:30 AM – 8:30 PM | Sun: 11:00 AM – 7:00 PM";
   const phone = settings?.phone_number || "+91 98765 43210";
-  const email = settings?.email || "hello@aureliajewels.com";
+  const email = settings?.email || "hello@vetrijewels.com";
   
   const embedUrl = import.meta.env.VITE_GOOGLE_MAPS_EMBED_URL ||
     settings?.google_map_embed_url ||
@@ -126,7 +126,7 @@ export default function MapSection({ settings }) {
           <div className="lg:col-span-7 bg-[#FFFDF9] border border-[#E8DDCD] p-1.5 relative shadow-sm overflow-hidden min-h-[320px] lg:min-h-[420px]">
             <iframe
               src={embedUrl}
-              title="AURELIA Fine Jewellery Boutique Location"
+              title="VETRI Fine Jewellery Boutique Location"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: '320px' }}

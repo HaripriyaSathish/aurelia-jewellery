@@ -7,7 +7,7 @@ export default function Testimonials({ testimonials = [] }) {
       id: 1,
       customer_name: "Eleanor Vance",
       customer_title: "Private Collector, London & Mumbai",
-      quote: "AURELIA represents the absolute pinnacle of high jewellery craftsmanship. The Celeste necklace was custom-fitted for our gala and the light reflection was simply hypnotic.",
+      quote: "VETRI represents the absolute pinnacle of high jewellery craftsmanship. The Celeste necklace was custom-fitted for our gala and the light reflection was simply hypnotic.",
       rating: 5,
       customer_image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
     },
@@ -50,7 +50,7 @@ export default function Testimonials({ testimonials = [] }) {
           </h2>
 
           <p className="text-base sm:text-lg text-[#746F68] font-medium max-w-xl mx-auto font-cormorant text-2xl italic">
-            Reflections from patrons, connoisseurs, and collectors who have made AURELIA a part of their legacy.
+            Reflections from patrons, connoisseurs, and collectors who have made VETRI a part of their legacy.
           </p>
         </div>
 

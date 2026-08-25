@@ -55,7 +55,7 @@ export default function Newsletter() {
         {success ? (
           <div className="inline-flex items-center gap-2.5 p-3.5 bg-white/10 backdrop-blur-md border border-[#B8945A] text-[#E8DDCD] text-xs uppercase tracking-wider animate-in fade-in">
             <CheckCircle2 className="w-4 h-4 text-[#B8945A]" />
-            <span>Welcome to the AURELIA Private Circle. A confirmation note has been dispatched.</span>
+            <span>Welcome to the VETRI Private Circle. A confirmation note has been dispatched.</span>
           </div>
         ) : (
           <form onSubmit={handleSubscribe} className="max-w-md mx-auto flex flex-col sm:flex-row gap-2">

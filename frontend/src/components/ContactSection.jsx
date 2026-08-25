@@ -5,12 +5,12 @@ import { apiService } from '../services/api';
 export default function ContactSection({ settings }) {
   const phone = settings?.phone_number || "+91 98765 43210";
   const whatsapp = settings?.whatsapp_number || "+91 98765 43210";
-  const email = settings?.email || "hello@aureliajewels.com";
+  const email = settings?.email || "hello@vetrijewels.com";
   const address = settings?.address || "123 Luxury Street, Chennai, Tamil Nadu, India";
 
   const cleanPhone = phone.replace(/[^0-9+]/g, '');
   const cleanWhatsApp = whatsapp.replace(/[^0-9]/g, '');
-  const whatsappMessage = settings?.whatsapp_message || "Hello AURELIA, I would like to know more about your jewellery collection.";
+  const whatsappMessage = settings?.whatsapp_message || "Hello VETRI, I would like to know more about your jewellery collection.";
   const whatsappUrl = `https://wa.me/${cleanWhatsApp}?text=${encodeURIComponent(whatsappMessage)}`;
 
   // Form State
@@ -180,7 +180,7 @@ export default function ContactSection({ settings }) {
                       Enquiry Received With Grace
                     </h4>
                     <p className="text-xs text-[#746F68] mt-0.5 leading-relaxed">
-                      Thank you for contacting AURELIA. An acknowledgement email has been dispatched. Our private concierge will reach out within 24 hours.
+                      Thank you for contacting VETRI. An acknowledgement email has been dispatched. Our private concierge will reach out within 24 hours.
                     </p>
                   </div>
                 </div>

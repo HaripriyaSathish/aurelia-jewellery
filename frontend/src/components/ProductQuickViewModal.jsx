@@ -32,7 +32,7 @@ export default function ProductQuickViewModal({
 
   const cleanWhatsAppNum = whatsappNumber.replace(/[^0-9]/g, '');
   const whatsappUrl = `https://wa.me/${cleanWhatsAppNum}?text=${encodeURIComponent(
-    `Hello AURELIA, I would like to inquire about the ${product.name} (Ref: ${product.slug || product.id}).`
+    `Hello VETRI, I would like to inquire about the ${product.name} (Ref: ${product.slug || product.id}).`
   )}`;
 
   return (
