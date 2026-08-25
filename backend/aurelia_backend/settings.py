@@ -144,9 +144,10 @@ CASHFREE_ENV = os.getenv('CASHFREE_ENV', 'TEST')  # 'TEST' or 'PRODUCTION'
 WHATSAPP_CLOUD_TOKEN = os.getenv('WHATSAPP_CLOUD_TOKEN', '')
 WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', '')
 
-# Anthropic API key for the AI chatbot's open-ended answers (optional —
+# Groq API key for the AI chatbot's open-ended answers (optional —
 # rule-based offers/order-tracking replies work without it)
-ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY', '')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
+GROQ_MODEL = os.getenv('GROQ_MODEL', 'llama-3.3-70b-versatile')
 
 # Email Settings
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
