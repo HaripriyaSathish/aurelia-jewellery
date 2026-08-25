@@ -113,7 +113,6 @@ def send_order_confirmation_email(order):
     ID, payment mode).
     """
     from django.core.mail import EmailMessage
-    from orders.invoice import generate_invoice_pdf
 
     items_lines = "\n".join(
         f"- {item.product_name} (Qty: {item.quantity}) - Rs. {item.price}"
@@ -151,6 +150,7 @@ VETRI FINE JEWELLERY
             to=[order.customer_email],
         )
         try:
+            from orders.invoice import generate_invoice_pdf
             pdf_buffer = generate_invoice_pdf(order)
             email.attach(f"Invoice-{order.order_number}.pdf", pdf_buffer.read(), "application/pdf")
         except Exception as e:
