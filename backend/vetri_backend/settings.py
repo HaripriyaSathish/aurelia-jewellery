@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'aurelia_backend.urls'
+ROOT_URLCONF = 'vetri_backend.urls'
 
 FRONTEND_DIST = os.path.join(BASE_DIR.parent, 'frontend', 'dist')
 
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'aurelia_backend.wsgi.application'
+WSGI_APPLICATION = 'vetri_backend.wsgi.application'
 
 DATABASES = {
     'default': {

@@ -19,7 +19,7 @@ A **premium, luxury, single-page jewellery shop website** with a high-end editor
 ```
 aurelia-jewellery/
 ├── backend/
-│   ├── aurelia_backend/
+│   ├── vetri_backend/
 │   │   ├── settings.py          # Django settings & CORS configuration
 │   │   ├── urls.py              # Root URL routing & Admin site branding
 │   │   └── wsgi.py

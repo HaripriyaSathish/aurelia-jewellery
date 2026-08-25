@@ -1,11 +1,11 @@
 ﻿services:
   - type: web
-    name: aurelia-jewellery
+    name: vetri-jewellery
     runtime: python
     region: oregon
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "cd backend && gunicorn aurelia_backend.wsgi:application --bind 0.0.0.0:$PORT"
+    startCommand: "cd backend && gunicorn vetri_backend.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
@@ -18,7 +18,7 @@
       - key: EMAIL_BACKEND
         value: django.core.mail.backends.console.EmailBackend
       - key: FRONTEND_URL
-        value: "https://aurelia-jewellery.onrender.com"
+        value: "https://vetri-jewellery.onrender.com"
       # Cashfree TEST-mode credentials — set these in the Render dashboard
       # (Environment tab) after creating a free test account at
       # https://merchant.cashfree.com/merchants/signup
