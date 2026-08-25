@@ -10,9 +10,9 @@ def send_contact_emails(enquiry):
     an elegant confirmation email to the customer.
     """
     # 1. Email to Admin
-    admin_subject = f"[AURELIA Inquiry] New message from {enquiry.name}: {enquiry.subject}"
+    admin_subject = f"[VETRI Inquiry] New message from {enquiry.name}: {enquiry.subject}"
     admin_message = f"""
-New Enquiry Received at AURELIA Fine Jewellery Concierge
+New Enquiry Received at VETRI Fine Jewellery Concierge
 -------------------------------------------------------
 Date: {enquiry.created_at.strftime('%B %d, %Y at %I:%M %p')}
 Client Name: {enquiry.name}
@@ -38,11 +38,11 @@ You can review and manage this inquiry in the Django Admin Dashboard.
         logger.warning(f"Admin email notification could not be sent: {e}")
 
     # 2. Acknowledgement email to Customer
-    customer_subject = f"Thank you for reaching out to AURELIA Fine Jewellery"
+    customer_subject = f"Thank you for reaching out to VETRI Fine Jewellery"
     customer_message = f"""
 Dear {enquiry.name},
 
-Thank you for your interest in AURELIA Fine Jewellery.
+Thank you for your interest in VETRI Fine Jewellery.
 
 We have received your enquiry regarding:
 "{enquiry.subject}"
@@ -52,10 +52,10 @@ Our Private Jewellery Concierge team will review your request and reach out to y
 With warm regards,
 
 The Concierge Team
-AURELIA FINE JEWELLERY
+VETRI FINE JEWELLERY
 123 Luxury Street, Chennai, Tamil Nadu, India
 Phone: +91 98765 43210
-Website: https://aureliajewels.com
+Website: https://vetrijewels.com
 """
     try:
         send_mail(
@@ -78,11 +78,11 @@ def send_password_reset_email(user, uid, token):
     frontend_url = getattr(settings, 'FRONTEND_URL', 'http://localhost:5173').rstrip('/')
     reset_link = f"{frontend_url}/reset-password?uid={uid}&token={token}"
 
-    subject = "Reset your AURELIA Fine Jewellery password"
+    subject = "Reset your VETRI Fine Jewellery password"
     message = f"""
 Hello {user.first_name or user.get_username()},
 
-We received a request to reset the password for your AURELIA account.
+We received a request to reset the password for your VETRI account.
 
 Click the link below to choose a new password. This link is valid for a limited time and can only be used once:
 
@@ -92,7 +92,7 @@ If you did not request a password reset, you can safely ignore this email.
 
 With warm regards,
 The Concierge Team
-AURELIA FINE JEWELLERY
+VETRI FINE JEWELLERY
 """
     try:
         send_mail(
@@ -114,11 +114,11 @@ def send_order_confirmation_email(order):
         f"- {item.product_name} (Qty: {item.quantity}) - Rs. {item.price}"
         for item in order.items.all()
     )
-    subject = f"Your AURELIA order {order.order_number} is confirmed"
+    subject = f"Your VETRI order {order.order_number} is confirmed"
     message = f"""
 Dear {order.customer_name},
 
-Thank you for your order with AURELIA Fine Jewellery. Your payment has been received and your order is now confirmed.
+Thank you for your order with VETRI Fine Jewellery. Your payment has been received and your order is now confirmed.
 
 Order Number: {order.order_number}
 Items:
@@ -130,7 +130,7 @@ You can track your order anytime using your order number and email/phone on our 
 
 With warm regards,
 The Concierge Team
-AURELIA FINE JEWELLERY
+VETRI FINE JEWELLERY
 """
     try:
         send_mail(
@@ -148,17 +148,17 @@ def send_newsletter_welcome_email(email):
     """
     Sends a warm welcome acknowledgement email to the new newsletter subscriber.
     """
-    subject = "Welcome to the AURELIA Private Circle"
+    subject = "Welcome to the VETRI Private Circle"
     message = f"""
-Welcome to the AURELIA Private Circle.
+Welcome to the VETRI Private Circle.
 
 Thank you for subscribing to our private journal and exclusive releases. You will be among the first to receive invitations to private previews, limited haute joaillerie exhibitions, and curated insights into our master craftsmanship.
 
 Discover our latest collections anytime at:
-https://aureliajewels.com
+https://vetrijewels.com
 
 Warmest regards,
-AURELIA FINE JEWELLERY
+VETRI FINE JEWELLERY
 """
     try:
         send_mail(

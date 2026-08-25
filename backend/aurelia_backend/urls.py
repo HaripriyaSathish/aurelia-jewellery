@@ -5,8 +5,8 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 # Custom Admin Branding
-admin.site.site_header = "AURELIA Fine Jewellery Administration"
-admin.site.site_title = "AURELIA Admin Portal"
+admin.site.site_header = "VETRI Fine Jewellery Administration"
+admin.site.site_title = "VETRI Admin Portal"
 admin.site.index_title = "Haute Joaillerie Management & Boutique Operations"
 
 urlpatterns = [

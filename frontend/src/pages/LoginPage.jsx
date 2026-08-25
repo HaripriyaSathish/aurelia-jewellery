@@ -92,7 +92,7 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-xs text-[#5C574F] mt-6">
-          New to AURELIA?{' '}
+          New to VETRI?{' '}
           <Link to="/register" className="text-[#B8945A] font-semibold hover:text-[#1E1C1A] transition-colors">
             Create an account
           </Link>

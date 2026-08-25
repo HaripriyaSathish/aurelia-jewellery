@@ -42,7 +42,7 @@ export default function RegisterPage() {
             <UserPlus className="w-5 h-5" />
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl text-[#1E1C1A] mb-2">Create Your Account</h1>
-          <p className="text-xs text-[#5C574F]">Join AURELIA to checkout faster and track your orders.</p>
+          <p className="text-xs text-[#5C574F]">Join VETRI to checkout faster and track your orders.</p>
         </div>
 
         {errors.non_field_errors && (

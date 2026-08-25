@@ -158,12 +158,12 @@ class ContactEnquiry(models.Model):
 
 
 class ShopSettings(models.Model):
-    shop_name = models.CharField(max_length=120, default="AURELIA FINE JEWELLERY")
+    shop_name = models.CharField(max_length=120, default="VETRI FINE JEWELLERY")
     tagline = models.CharField(max_length=200, default="The Art of Forever — Mastercrafted Haute Joaillerie")
     phone_number = models.CharField(max_length=40, default="+91 98765 43210")
     whatsapp_number = models.CharField(max_length=40, default="+91 98765 43210")
-    whatsapp_message = models.TextField(default="Hello AURELIA, I would like to know more about your jewellery collection.")
-    email = models.EmailField(default="hello@aureliajewels.com")
+    whatsapp_message = models.TextField(default="Hello VETRI, I would like to know more about your jewellery collection.")
+    email = models.EmailField(default="hello@vetrijewels.com")
     address = models.CharField(max_length=255, default="123 Luxury Street, Chennai, Tamil Nadu, India")
     opening_hours = models.CharField(max_length=255, default="Mon – Sat: 10:30 AM – 8:30 PM | Sun: 11:00 AM – 7:00 PM")
     google_map_embed_url = models.TextField(
@@ -173,9 +173,9 @@ class ShopSettings(models.Model):
         max_length=500,
         default="https://maps.google.com/?q=Khader+Nawaz+Khan+Road+Nungambakkam+Chennai"
     )
-    facebook_url = models.URLField(default="https://facebook.com/aureliajewels", blank=True)
-    instagram_url = models.URLField(default="https://instagram.com/aureliajewels", blank=True)
-    pinterest_url = models.URLField(default="https://pinterest.com/aureliajewels", blank=True)
+    facebook_url = models.URLField(default="https://facebook.com/vetrijewels", blank=True)
+    instagram_url = models.URLField(default="https://instagram.com/vetrijewels", blank=True)
+    pinterest_url = models.URLField(default="https://pinterest.com/vetrijewels", blank=True)
 
     class Meta:
         verbose_name = 'Shop Settings'

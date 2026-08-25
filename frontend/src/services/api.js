@@ -47,19 +47,19 @@ apiClient.interceptors.response.use(
 // Fallback Mock Data with 100% verified live images
 export const fallbackData = {
   settings: {
-    shop_name: "AURELIA FINE JEWELLERY",
+    shop_name: "VETRI FINE JEWELLERY",
     tagline: "The Art of Forever — Mastercrafted Haute Joaillerie",
     phone_number: "+91 98765 43210",
     whatsapp_number: "+91 98765 43210",
-    whatsapp_message: "Hello AURELIA, I would like to know more about your jewellery collection.",
-    email: "hello@aureliajewels.com",
+    whatsapp_message: "Hello VETRI, I would like to know more about your jewellery collection.",
+    email: "hello@vetrijewels.com",
     address: "123 Luxury Street, Chennai, Tamil Nadu, India",
     opening_hours: "Mon – Sat: 10:30 AM – 8:30 PM | Sun: 11:00 AM – 7:00 PM",
     google_map_embed_url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.589139886364!2d80.2452!3d13.0475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266497f1f9e53%3A0x6b4f7b21e8d6411!2sKhader%20Nawaz%20Khan%20Rd%2C%20Nungambakkam%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000",
     google_map_direct_url: "https://maps.google.com/?q=Khader+Nawaz+Khan+Road+Nungambakkam+Chennai",
-    facebook_url: "https://facebook.com/aureliajewels",
-    instagram_url: "https://instagram.com/aureliajewels",
-    pinterest_url: "https://pinterest.com/aureliajewels",
+    facebook_url: "https://facebook.com/vetrijewels",
+    instagram_url: "https://instagram.com/vetrijewels",
+    pinterest_url: "https://pinterest.com/vetrijewels",
   },
   hero: {
     title: "The Art of Forever",
@@ -117,8 +117,8 @@ export const fallbackData = {
     },
     {
       id: 2,
-      name: "Aurelia Gold Earrings",
-      slug: "aurelia-gold-earrings",
+      name: "Vetri Gold Earrings",
+      slug: "vetri-gold-earrings",
       category_name: "Gold",
       category_slug: "gold",
       description: "Sculptural drops forged from solid 18K yellow gold featuring a hand-brushed satin finish paired with mirror-polished bevels. A harmonious dialogue of fluid movement and architectural modernism.",
@@ -206,7 +206,7 @@ export const fallbackData = {
       id: 1,
       customer_name: "Eleanor Vance",
       customer_title: "Private Collector, London & Mumbai",
-      quote: "AURELIA represents the absolute pinnacle of high jewellery craftsmanship. The Celeste necklace was custom-fitted for our gala and the light reflection was simply hypnotic.",
+      quote: "VETRI represents the absolute pinnacle of high jewellery craftsmanship. The Celeste necklace was custom-fitted for our gala and the light reflection was simply hypnotic.",
       rating: 5,
       customer_image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
     },
@@ -335,7 +335,7 @@ export const apiService = {
       }
       return {
         success: true,
-        message: "Thank you for reaching out to AURELIA. Your inquiry has been received and our jewellery concierge will connect with you shortly."
+        message: "Thank you for reaching out to VETRI. Your inquiry has been received and our jewellery concierge will connect with you shortly."
       };
     }
   },
@@ -350,7 +350,7 @@ export const apiService = {
       }
       return {
         success: true,
-        message: "Welcome to the AURELIA Private Circle. You have been successfully subscribed."
+        message: "Welcome to the VETRI Private Circle. You have been successfully subscribed."
       };
     }
   }

@@ -38,7 +38,7 @@ class RegisterView(APIView):
             return Response(
                 {
                     "success": True,
-                    "message": "Your AURELIA account has been created.",
+                    "message": "Your VETRI account has been created.",
                     "user": UserSerializer(user).data,
                     **tokens_for_user(user),
                 },
