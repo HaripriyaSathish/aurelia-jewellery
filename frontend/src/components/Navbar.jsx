@@ -74,10 +74,10 @@ export default function Navbar({
           </div>
 
                    {/* Centered Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8 flex-shrink-0">
             {navLinks.map((link) => {
               const isHash = link.href.startsWith('/#');
-              const linkClass = `text-[12px] font-medium tracking-[0.25em] transition-all duration-300 relative group py-1 ${
+              const linkClass = `text-[12px] font-medium tracking-[0.15em] xl:tracking-[0.25em] whitespace-nowrap transition-all duration-300 relative group py-1 ${
                 isScrolled ? 'text-[#1E1C1A] hover:text-[#B8945A]' : 'text-white/90 hover:text-white'
               }`;
               return isHash ? (
@@ -107,7 +107,7 @@ export default function Navbar({
             >
               <User className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
               {user && (
-                <span className="hidden lg:inline text-[11px] font-medium tracking-wider whitespace-nowrap">
+                <span className="hidden xl:inline text-[11px] font-medium tracking-wider whitespace-nowrap">
                   Hi, {user.first_name || 'there'}
                 </span>
               )}
