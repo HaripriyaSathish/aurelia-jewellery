@@ -26,6 +26,7 @@ PHONE_RE = re.compile(r'(\+?\d[\d\s-]{7,14}\d)')
 OFFER_KEYWORDS = ('offer', 'discount', 'sale', 'deal', 'promo', 'price drop')
 TRACK_KEYWORDS = ('track', 'order status', 'where is my order', 'my order', 'delivery status', 'shipment')
 WHATSAPP_KEYWORDS = ('whatsapp', 'human', 'agent', 'concierge', 'call', 'talk to someone')
+BESTSELLER_KEYWORDS = ('bestseller', 'best seller', 'best-seller', 'popular', 'most loved', 'top pick', 'most sold')
 
 
 def _whatsapp_link(settings_obj, text):
@@ -50,6 +51,21 @@ def _offers_reply():
     return {
         "reply": body,
         "quick_replies": ["Track my order", "Talk on WhatsApp", "Show bestsellers"],
+        "context": {},
+    }
+
+
+def _bestsellers_reply():
+    from jewellery.models import JewelleryProduct
+    items = JewelleryProduct.objects.filter(is_bestseller=True).order_by('-created_at')[:4]
+    if items:
+        lines = [f"• {p.name} — ₹{p.price:,.0f} ({p.material})" for p in items]
+        body = "Here are our current bestsellers:\n" + "\n".join(lines)
+    else:
+        body = "We don't have bestsellers flagged just yet — but I can show you our current offers or help you find something specific."
+    return {
+        "reply": body,
+        "quick_replies": ["See current offers", "Track my order", "Talk on WhatsApp"],
         "context": {},
     }
 
@@ -210,6 +226,9 @@ def handle_message(message, context=None):
 
     if any(k in lowered for k in OFFER_KEYWORDS):
         return _offers_reply()
+
+    if any(k in lowered for k in BESTSELLER_KEYWORDS):
+        return _bestsellers_reply()
 
     product_reply = _product_search_reply(message)
     if product_reply:
