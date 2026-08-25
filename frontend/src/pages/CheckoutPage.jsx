@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Lock, Send } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -7,7 +7,7 @@ import { orderService } from '../services/api';
 
 export default function CheckoutPage() {
   const { cart } = useCart();
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
 
   const [form, setForm] = useState({
     name: user ? `${user.first_name} ${user.last_name}`.trim() : '',
@@ -81,6 +81,14 @@ export default function CheckoutPage() {
       setLoading(false);
     }
   };
+
+  if (authLoading) {
+    return <div className="min-h-[60vh] flex items-center justify-center text-[#5C574F] text-sm pt-24">Loading...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/login" state={{ from: '/checkout' }} replace />;
+  }
 
   if (cart.length === 0) {
     return (
