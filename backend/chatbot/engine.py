@@ -6,8 +6,8 @@ Three layers, tried in order:
      most: current offers/discounts and order tracking. These never rely
      on an external AI API, so they work even with zero configuration.
   2. A lightweight product search over the catalogue.
-  3. An optional call out to the Anthropic API for open-ended questions,
-     grounded with real shop data, if ANTHROPIC_API_KEY is configured.
+  3. An optional call out to the Groq API for open-ended questions,
+     grounded with real shop data, if GROQ_API_KEY is configured.
      Without a key, a helpful canned response (with a WhatsApp handoff)
      is returned instead.
 """
@@ -130,7 +130,7 @@ def _track_order_reply(message, context):
 
 def _ai_fallback_reply(message):
     settings_obj = _get_shop_settings()
-    api_key = getattr(settings, 'ANTHROPIC_API_KEY', '')
+    api_key = getattr(settings, 'GROQ_API_KEY', '')
 
     if not api_key:
         text = (
@@ -162,26 +162,27 @@ def _ai_fallback_reply(message):
         )
 
         response = requests.post(
-            "https://api.anthropic.com/v1/messages",
+            "https://api.groq.com/openai/v1/chat/completions",
             headers={
-                "x-api-key": api_key,
-                "anthropic-version": "2023-06-01",
-                "content-type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
             },
             json={
-                "model": "claude-haiku-4-5-20251001",
+                "model": getattr(settings, 'GROQ_MODEL', 'llama-3.3-70b-versatile'),
                 "max_tokens": 300,
-                "system": system_prompt,
-                "messages": [{"role": "user", "content": message}],
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": message},
+                ],
             },
             timeout=15,
         )
         response.raise_for_status()
         data = response.json()
-        text = "".join(block.get("text", "") for block in data.get("content", []) if block.get("type") == "text")
-        text = text.strip() or "I'm not sure about that — our concierge on WhatsApp can help further."
+        text = data["choices"][0]["message"]["content"].strip()
+        text = text or "I'm not sure about that — our concierge on WhatsApp can help further."
     except Exception as e:
-        logger.warning(f"Anthropic chatbot call failed: {e}")
+        logger.warning(f"Groq chatbot call failed: {e}")
         text = "I'm having trouble reaching my brain right now — please try again, or chat with our concierge on WhatsApp."
 
     return {

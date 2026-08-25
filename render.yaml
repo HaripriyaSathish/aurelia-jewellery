@@ -30,5 +30,5 @@
         value: "TEST"
       # Optional: enables open-ended AI answers in the chatbot widget.
       # Leave unset to keep the rule-based offers/order-tracking replies only.
-      - key: ANTHROPIC_API_KEY
+      - key: GROQ_API_KEY
         sync: false
