@@ -113,7 +113,7 @@ export default function CheckoutPage() {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20">
       <h1 className="font-serif text-3xl sm:text-4xl text-[#1E1C1A] mb-2 text-center">Secure Checkout</h1>
-      <p className="text-xs text-[#5C574F] text-center mb-10 flex items-center justify-center gap-1.5">
+      <p className="text-sm font-medium text-[#5C574F] text-center mb-10 flex items-center justify-center gap-1.5">
         <Lock className="w-3.5 h-3.5 text-[#B8945A]" /> Payments processed securely via Cashfree (Test Mode)
       </p>
 
@@ -121,70 +121,70 @@ export default function CheckoutPage() {
 
         {/* Shipping form */}
         <form onSubmit={handleSubmit} className="lg:col-span-3 space-y-4 bg-[#FFFDF9] border border-[#E8DDCD] p-6 sm:p-8">
-          {error && <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs">{error}</div>}
+          {error && <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-sm font-semibold">{error}</div>}
 
           <div>
-            <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Full Name *</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Full Name *</label>
             <input
               type="text" name="name" required value={form.name} onChange={handleChange}
-              className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
+              className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-base font-medium text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Email *</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Email *</label>
               <input
                 type="email" name="email" required value={form.email} onChange={handleChange}
-                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
+                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-base font-medium text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Phone *</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Phone *</label>
               <input
                 type="tel" name="phone" required value={form.phone} onChange={handleChange}
                 placeholder="+91 98765 43210"
-                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
+                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-base font-medium text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1.5">City</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1.5">City</label>
               <input
                 type="text" name="city" value={form.city} onChange={handleChange}
-                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
+                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-base font-medium text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Delivery Address</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Delivery Address</label>
               <input
                 type="text" name="address" value={form.address} onChange={handleChange}
-                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
+                className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-base font-medium text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[10px] font-semibold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Order Notes</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#1E1C1A] mb-1.5">Order Notes</label>
             <textarea
               name="notes" rows="2" value={form.notes} onChange={handleChange}
               placeholder="e.g. Ring size, gift wrapping..."
-              className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-sm text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
+              className="w-full px-3 py-2.5 bg-[#FFFDF9] border border-[#E8DDCD] text-base font-medium text-[#1E1C1A] focus:outline-none focus:border-[#B8945A]"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-xs font-semibold tracking-[0.2em] uppercase transition-colors flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+            className="w-full py-3.5 bg-[#1E1C1A] hover:bg-[#B8945A] text-white text-sm font-bold tracking-[0.2em] uppercase transition-colors flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
           >
             <Send className="w-4 h-4 text-[#E8DDCD]" />
             <span>{loading ? 'REDIRECTING TO PAYMENT...' : `PAY ${formatPrice(grandTotal)} SECURELY`}</span>
           </button>
 
-          <div className="flex items-center justify-center gap-1.5 text-[10px] text-[#5C574F] uppercase tracking-wider pt-1">
+          <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-[#5C574F] uppercase tracking-wider pt-1">
             <ShieldCheck className="w-3.5 h-3.5 text-[#B8945A]" />
             <span>256-bit encrypted checkout, powered by Cashfree</span>
           </div>
@@ -193,22 +193,22 @@ export default function CheckoutPage() {
         {/* Order summary */}
         <div className="lg:col-span-2">
           <div className="bg-[#F8F5F0] border border-[#E8DDCD] p-6 sticky top-28">
-            <h2 className="font-serif text-lg text-[#1E1C1A] mb-4">Order Summary</h2>
+            <h2 className="font-serif text-xl text-[#1E1C1A] mb-4">Order Summary</h2>
             <div className="space-y-3 max-h-72 overflow-y-auto pr-1 mb-4">
               {cart.map((item) => (
                 <div key={item.id} className="flex gap-3 items-center">
                   <img src={item.image_url} alt={item.name} className="w-12 h-12 object-cover flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-[#1E1C1A] truncate">{item.name}</p>
-                    <p className="text-[10px] text-[#5C574F]">Qty {item.quantity || 1}</p>
+                    <p className="text-sm font-bold text-[#1E1C1A] truncate">{item.name}</p>
+                    <p className="text-xs font-medium text-[#5C574F]">Qty {item.quantity || 1}</p>
                   </div>
-                  <span className="text-xs font-semibold text-[#1E1C1A]">
+                  <span className="text-sm font-bold text-[#1E1C1A]">
                     {formatPrice(parseFloat(item.price) * (item.quantity || 1))}
                   </span>
                 </div>
               ))}
             </div>
-            <div className="space-y-1.5 pt-3 border-t border-[#E8DDCD] text-xs text-[#5C574F]">
+            <div className="space-y-1.5 pt-3 border-t border-[#E8DDCD] text-sm font-semibold text-[#5C574F]">
               <div className="flex justify-between">
                 <span>Subtotal</span>
                 <span>{formatPrice(subtotal)}</span>
@@ -226,7 +226,7 @@ export default function CheckoutPage() {
                 <span className="text-[#B8945A] font-semibold uppercase">Complimentary</span>
               </div>
             </div>
-            <div className="flex justify-between text-base font-semibold text-[#1E1C1A] pt-2 mt-1.5 border-t border-[#E8DDCD]">
+            <div className="flex justify-between text-lg font-bold text-[#1E1C1A] pt-2 mt-1.5 border-t border-[#E8DDCD]">
               <span className="font-serif">Total</span>
               <span>{formatPrice(grandTotal)}</span>
             </div>

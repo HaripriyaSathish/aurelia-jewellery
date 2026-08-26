@@ -57,7 +57,7 @@ export default function CartDrawer({
     e.preventDefault();
     setLoading(true);
 
-    const ref = `AUR-${Math.floor(100000 + Math.random() * 900000)}`;
+    const ref = `VET-${Math.floor(100000 + Math.random() * 900000)}`;
     const itemsDescription = cart.map(i => `${i.name} (Qty: ${i.quantity || 1}, Price: ${formatPrice(i.price)})`).join(', ');
 
     const payload = {

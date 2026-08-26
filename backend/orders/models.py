@@ -9,7 +9,7 @@ from jewellery.models import JewelleryProduct
 
 def generate_order_number():
     suffix = ''.join(random.choices(string.digits, k=6))
-    return f"AUR-{suffix}"
+    return f"VET-{suffix}"
 
 
 class Order(models.Model):
