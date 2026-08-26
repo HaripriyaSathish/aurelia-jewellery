@@ -20,9 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
 
     # Third party
     'rest_framework',
@@ -113,7 +111,6 @@ if os.path.exists(FRONTEND_DIST):
 # WhiteNoise Configuration for serving static and root assets
 WHITENOISE_ROOT = FRONTEND_DIST
 WHITENOISE_INDEX_FILE = True
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -122,9 +119,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # when CLOUDINARY_URL is set — required in production, since Render's
 # disk is ephemeral and media files aren't served there at all when
 # DEBUG=False. Falls back to local disk storage when unset, which is
-# fine for local dev.
-if os.getenv('CLOUDINARY_URL'):
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# fine for local dev. Django 5+ reads storage backends from STORAGES,
+# not the old DEFAULT_FILE_STORAGE/STATICFILES_STORAGE settings.
+STORAGES = {
+    'default': {
+        'BACKEND': (
+            'cloudinary_storage.storage.MediaCloudinaryStorage'
+            if os.getenv('CLOUDINARY_URL')
+            else 'django.core.files.storage.FileSystemStorage'
+        ),
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
