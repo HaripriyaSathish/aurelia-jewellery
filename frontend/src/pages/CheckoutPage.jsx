@@ -68,7 +68,7 @@ export default function CheckoutPage() {
       // Remember contact details so the order-tracking page can auto-verify
       // payment and look the order up when Cashfree redirects back here.
       sessionStorage.setItem(
-        'aurelia_last_checkout',
+        'vetri_last_checkout',
         JSON.stringify({ orderNumber: data.order_number, email: form.email, phone: form.phone })
       );
 

@@ -13,7 +13,7 @@ const apiClient = axios.create({
 
 // Attach the JWT access token (if the customer is logged in) to every request
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('aurelia_access_token');
+  const token = localStorage.getItem('vetri_access_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -27,16 +27,16 @@ apiClient.interceptors.response.use(
     const original = error.config;
     if (error.response?.status === 401 && !original._retry) {
       original._retry = true;
-      const refreshToken = localStorage.getItem('aurelia_refresh_token');
+      const refreshToken = localStorage.getItem('vetri_refresh_token');
       if (refreshToken) {
         try {
           const { data } = await axios.post(`${API_BASE_URL}/auth/token/refresh/`, { refresh: refreshToken });
-          localStorage.setItem('aurelia_access_token', data.access);
+          localStorage.setItem('vetri_access_token', data.access);
           original.headers.Authorization = `Bearer ${data.access}`;
           return apiClient(original);
         } catch {
-          localStorage.removeItem('aurelia_access_token');
-          localStorage.removeItem('aurelia_refresh_token');
+          localStorage.removeItem('vetri_access_token');
+          localStorage.removeItem('vetri_refresh_token');
         }
       }
     }

@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('aurelia_access_token');
+    const token = localStorage.getItem('vetri_access_token');
     if (!token) {
       setLoading(false);
       return;
@@ -17,15 +17,15 @@ export function AuthProvider({ children }) {
       .me()
       .then(setUser)
       .catch(() => {
-        localStorage.removeItem('aurelia_access_token');
-        localStorage.removeItem('aurelia_refresh_token');
+        localStorage.removeItem('vetri_access_token');
+        localStorage.removeItem('vetri_refresh_token');
       })
       .finally(() => setLoading(false));
   }, []);
 
   const storeTokens = (data) => {
-    localStorage.setItem('aurelia_access_token', data.access);
-    localStorage.setItem('aurelia_refresh_token', data.refresh);
+    localStorage.setItem('vetri_access_token', data.access);
+    localStorage.setItem('vetri_refresh_token', data.refresh);
   };
 
   const login = useCallback(async (email, password) => {
@@ -43,8 +43,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem('aurelia_access_token');
-    localStorage.removeItem('aurelia_refresh_token');
+    localStorage.removeItem('vetri_access_token');
+    localStorage.removeItem('vetri_refresh_token');
     setUser(null);
   }, []);
 

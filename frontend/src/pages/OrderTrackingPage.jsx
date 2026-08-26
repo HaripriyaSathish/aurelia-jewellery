@@ -49,7 +49,7 @@ export default function OrderTrackingPage() {
 
     let saved = null;
     try {
-      saved = JSON.parse(sessionStorage.getItem('aurelia_last_checkout') || 'null');
+      saved = JSON.parse(sessionStorage.getItem('vetri_last_checkout') || 'null');
     } catch {
       saved = null;
     }
@@ -66,7 +66,7 @@ export default function OrderTrackingPage() {
       if (saved && saved.orderNumber === orderFromUrl) {
         setForm({ orderNumber: orderFromUrl, email: saved.email || '', phone: saved.phone || '' });
         lookupOrder({ orderNumber: orderFromUrl, email: saved.email, phone: saved.phone });
-        sessionStorage.removeItem('aurelia_last_checkout');
+        sessionStorage.removeItem('vetri_last_checkout');
         clearCart();
       }
     }
