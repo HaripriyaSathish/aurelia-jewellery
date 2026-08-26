@@ -19,7 +19,7 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await register(form);
-      navigate('/account', { replace: true });
+      navigate('/', { replace: true });
     } catch (err) {
       const data = err.response?.data;
       if (data?.errors) {
