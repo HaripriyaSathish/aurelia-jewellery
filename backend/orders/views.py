@@ -8,8 +8,10 @@ from rest_framework.views import APIView
 
 from jewellery.emails import send_order_confirmation_email
 from .cashfree import create_payment_order, get_payment_order, get_order_payments, CashfreeError
-from .models import Order, OrderItem
+from .models import Order, OrderItem, OrderStatusEvent
 from .serializers import CreateOrderSerializer, OrderSerializer
+from .signals import STATUS_NOTES
+from .whatsapp import send_order_status_whatsapp
 
 
 class CreateOrderView(APIView):
@@ -103,8 +105,11 @@ class VerifyPaymentView(APIView):
             payment_method = ((successful_payment.get('payment_group') or '').replace('_', ' ').title()) if successful_payment else ''
 
             # Atomic claim: only the request that actually flips PENDING -> PAID
-            # sends the confirmation email, even if verify is called concurrently
-            # (e.g. a duplicate frontend effect run or a page refresh).
+            # sends the confirmation email/timeline entry/WhatsApp message,
+            # even if verify is called concurrently (e.g. a duplicate frontend
+            # effect run or a page refresh). .update() bypasses model signals
+            # on purpose here, so the timeline/WhatsApp side effects are done
+            # explicitly below instead of relying on the post_save signal.
             claimed = Order.objects.filter(pk=order.pk, status='PENDING').update(
                 status='PAID',
                 cashfree_payment_status=cf_status,
@@ -114,12 +119,20 @@ class VerifyPaymentView(APIView):
             )
             order.refresh_from_db()
             if claimed:
+                OrderStatusEvent.objects.create(
+                    order=order, status='PAID', note=STATUS_NOTES.get('PAID', ''),
+                )
                 send_order_confirmation_email(order)
+                send_order_status_whatsapp(order)
         elif cf_status in ('EXPIRED', 'TERMINATED', 'FAILED'):
-            Order.objects.filter(pk=order.pk, status='PENDING').update(
+            claimed = Order.objects.filter(pk=order.pk, status='PENDING').update(
                 status='FAILED', cashfree_payment_status=cf_status, updated_at=timezone.now(),
             )
             order.refresh_from_db()
+            if claimed:
+                OrderStatusEvent.objects.create(
+                    order=order, status='FAILED', note=STATUS_NOTES.get('FAILED', ''),
+                )
         else:
             order.cashfree_payment_status = cf_status
             order.save(update_fields=['cashfree_payment_status', 'updated_at'])

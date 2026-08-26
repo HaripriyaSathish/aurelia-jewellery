@@ -28,6 +28,11 @@ TRACK_KEYWORDS = ('track', 'order status', 'where is my order', 'my order', 'del
 WHATSAPP_KEYWORDS = ('whatsapp', 'human', 'agent', 'concierge', 'call', 'talk to someone')
 BESTSELLER_KEYWORDS = ('bestseller', 'best seller', 'best-seller', 'popular', 'most loved', 'top pick', 'most sold')
 
+# Mirrors the delivery-progress stepper on the order-tracking page.
+STAGE_ORDER = ['PENDING', 'PAID', 'PROCESSING', 'SHIPPED', 'OUT_FOR_DELIVERY', 'DELIVERED']
+STAGE_LABELS = ['Order Placed', 'Payment Confirmed', 'Preparing', 'Dispatched', 'Out for Delivery', 'Delivered']
+STAGE_INDEX = {key: i for i, key in enumerate(STAGE_ORDER)}
+
 
 def _whatsapp_link(settings_obj, text):
     from urllib.parse import quote
@@ -131,10 +136,27 @@ def _track_order_reply(message, context):
         }
 
     status_label = order.get_status_display()
+    items_lines = "\n".join(f"  • {item.product_name} x{item.quantity}" for item in order.items.all())
+    address = ", ".join(filter(None, [order.address, order.city])) or "Not provided"
+
+    if order.status in ('FAILED', 'CANCELLED'):
+        progress_lines = f"Status: {status_label}"
+    else:
+        current_index = STAGE_INDEX.get(order.status, 0)
+        progress_lines = "\n".join(
+            f"  {'✅' if i <= current_index else '⬜'} {label}"
+            for i, label in enumerate(STAGE_LABELS)
+        )
+
     reply = (
-        f"Order {order.order_number} is currently: {status_label}.\n"
+        f"Order {order.order_number} — {status_label}\n\n"
+        f"{progress_lines}\n\n"
+        f"Items:\n{items_lines}\n\n"
         f"Total: ₹{order.total_amount:,.0f}\n"
+        f"Delivery Address: {address}\n"
         f"Placed on: {order.created_at.strftime('%d %b %Y')}"
+        + (f"\nPayment Mode: {order.payment_method}" if order.payment_method else "")
+        + (f"\nTransaction ID: {order.transaction_id}" if order.transaction_id else "")
     )
     return {
         "reply": reply,

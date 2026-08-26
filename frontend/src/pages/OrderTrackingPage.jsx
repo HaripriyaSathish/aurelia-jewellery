@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PackageSearch, MessageCircle, CheckCircle2, Clock, Truck, XCircle } from 'lucide-react';
+import { PackageSearch, MessageCircle, CheckCircle2, Check, Clock, Truck, XCircle, User, MapPin } from 'lucide-react';
 import { orderService } from '../services/api';
 import { useShopData } from '../context/ShopDataContext';
 import { useCart } from '../context/CartContext';
@@ -15,6 +15,18 @@ const STATUS_ICONS = {
   FAILED: XCircle,
   CANCELLED: XCircle,
 };
+
+// Fixed delivery-progress stages shown as a stepper. Order among these
+// only matters relative to order.status below.
+const STAGE_STEPS = [
+  { key: 'PENDING', label: 'Order Placed' },
+  { key: 'PAID', label: 'Payment Confirmed' },
+  { key: 'PROCESSING', label: 'Preparing' },
+  { key: 'SHIPPED', label: 'Dispatched' },
+  { key: 'OUT_FOR_DELIVERY', label: 'Out for Delivery' },
+  { key: 'DELIVERED', label: 'Delivered' },
+];
+const STAGE_INDEX = Object.fromEntries(STAGE_STEPS.map((s, i) => [s.key, i]));
 
 export default function OrderTrackingPage() {
   const [searchParams] = useSearchParams();
@@ -154,22 +166,82 @@ export default function OrderTrackingPage() {
             </span>
           </div>
 
-          {/* Timeline */}
-          <div className="space-y-4 mb-6">
-            {(order.timeline || []).map((event, idx) => {
-              const Icon = STATUS_ICONS[event.status] || Clock;
-              return (
-                <div key={idx} className="flex items-start gap-3">
-                  <Icon className="w-4 h-4 text-[#B8945A] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-base font-bold text-[#1E1C1A]">{event.status_display}</p>
-                    {event.note && <p className="text-sm font-medium text-[#5C574F]">{event.note}</p>}
-                    <p className="text-xs text-[#5C574F]/70">{new Date(event.created_at).toLocaleString('en-IN')}</p>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Delivery progress stepper */}
+          {['FAILED', 'CANCELLED'].includes(order.status) ? (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-sm font-semibold text-center">
+              {order.status_display} — {order.status === 'FAILED' ? 'the payment for this order did not go through.' : 'this order was cancelled.'}
+            </div>
+          ) : (
+            <div className="mb-8 overflow-x-auto pb-1">
+              <div className="flex items-start min-w-[560px] sm:min-w-0">
+                {STAGE_STEPS.map((step, i) => {
+                  const currentIndex = STAGE_INDEX[order.status] ?? 0;
+                  const reached = i <= currentIndex;
+                  return (
+                    <React.Fragment key={step.key}>
+                      <div className="flex flex-col items-center w-16 sm:flex-1">
+                        <div
+                          className={`w-8 h-8 rounded-full flex items-center justify-center border-2 flex-shrink-0 ${
+                            reached ? 'bg-[#B8945A] border-[#B8945A] text-white' : 'bg-white border-[#E8DDCD] text-[#B8B0A0]'
+                          }`}
+                        >
+                          {reached ? <Check className="w-4 h-4" /> : <span className="text-xs font-bold">{i + 1}</span>}
+                        </div>
+                        <span className={`mt-2 text-[10px] sm:text-xs font-bold text-center leading-tight ${reached ? 'text-[#1E1C1A]' : 'text-[#B8B0A0]'}`}>
+                          {step.label}
+                        </span>
+                      </div>
+                      {i < STAGE_STEPS.length - 1 && (
+                        <div className={`h-0.5 flex-1 mt-4 ${i < currentIndex ? 'bg-[#B8945A]' : 'bg-[#E8DDCD]'}`} />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Customer & delivery details */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 mb-6 border-t border-[#E8DDCD]">
+            <div>
+              <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#B8945A] mb-2">
+                <User className="w-3.5 h-3.5" /> Customer Details
+              </p>
+              <p className="text-sm font-bold text-[#1E1C1A]">{order.customer_name}</p>
+              <p className="text-sm font-medium text-[#5C574F]">{order.customer_email}</p>
+              <p className="text-sm font-medium text-[#5C574F]">{order.customer_phone}</p>
+            </div>
+            <div>
+              <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#B8945A] mb-2">
+                <MapPin className="w-3.5 h-3.5" /> Delivery Address
+              </p>
+              <p className="text-sm font-medium text-[#1E1C1A]">
+                {order.address || order.city
+                  ? [order.address, order.city].filter(Boolean).join(', ')
+                  : 'No delivery address on file'}
+              </p>
+            </div>
           </div>
+
+          {/* Order activity log */}
+          {order.timeline?.length > 0 && (
+            <div className="space-y-4 mb-6 pt-6 border-t border-[#E8DDCD]">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#B8945A]">Order Activity</p>
+              {order.timeline.map((event, idx) => {
+                const Icon = STATUS_ICONS[event.status] || Clock;
+                return (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Icon className="w-4 h-4 text-[#B8945A] mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-base font-bold text-[#1E1C1A]">{event.status_display}</p>
+                      {event.note && <p className="text-sm font-medium text-[#5C574F]">{event.note}</p>}
+                      <p className="text-xs text-[#5C574F]/70">{new Date(event.created_at).toLocaleString('en-IN')}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           {/* Items */}
           <div className="space-y-2 pt-4 border-t border-[#E8DDCD] mb-4">
