@@ -159,6 +159,13 @@ GSTIN = os.getenv('GSTIN', '')  # your business GSTIN, shown on the invoice PDF 
 WHATSAPP_CLOUD_TOKEN = os.getenv('WHATSAPP_CLOUD_TOKEN', '')
 WHATSAPP_PHONE_NUMBER_ID = os.getenv('WHATSAPP_PHONE_NUMBER_ID', '')
 
+# Alternative to the above: Twilio's WhatsApp API (e.g. their free Sandbox,
+# no Meta Business verification needed for testing). If these are set,
+# they take priority over WHATSAPP_CLOUD_TOKEN/WHATSAPP_PHONE_NUMBER_ID.
+TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID', '')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN', '')
+TWILIO_WHATSAPP_FROM = os.getenv('TWILIO_WHATSAPP_FROM', '')  # e.g. whatsapp:+14155238886
+
 # Groq API key for the AI chatbot's open-ended answers (optional —
 # rule-based offers/order-tracking replies work without it)
 GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
