@@ -23,6 +23,14 @@
       # postgresql://user:pass@host/dbname?sslmode=require
       - key: DATABASE_URL
         sync: false
+      # REQUIRED for uploaded product images (Django admin's Image field)
+      # to work at all — /media/ isn't served in production and the disk
+      # is ephemeral anyway. Get a free "API Environment variable" string
+      # from https://cloudinary.com (Dashboard) — format:
+      # cloudinary://<api_key>:<api_secret>@<cloud_name>
+      # Not needed if you only use the "Image URL" field (external links).
+      - key: CLOUDINARY_URL
+        sync: false
       - key: EMAIL_BACKEND
         value: django.core.mail.backends.console.EmailBackend
       - key: FRONTEND_URL

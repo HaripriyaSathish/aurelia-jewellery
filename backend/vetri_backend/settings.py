@@ -20,8 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
-    
+    'cloudinary',
+
     # Third party
     'rest_framework',
     'rest_framework_simplejwt',
@@ -115,6 +117,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Uploaded product images (Django admin's Image field) go to Cloudinary
+# when CLOUDINARY_URL is set — required in production, since Render's
+# disk is ephemeral and media files aren't served there at all when
+# DEBUG=False. Falls back to local disk storage when unset, which is
+# fine for local dev.
+if os.getenv('CLOUDINARY_URL'):
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
