@@ -44,8 +44,15 @@
         value: "0.03"
       - key: GSTIN
         sync: false
-      # Optional: enables automated WhatsApp order-status messages.
-      # Requires a Meta Business + WhatsApp API setup — see backend/.env.example.
+      # Optional: enables automated WhatsApp order-status messages, via
+      # EITHER Twilio (easiest — no Meta Business verification needed,
+      # see backend/.env.example) or Meta's Cloud API directly.
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_WHATSAPP_FROM
+        sync: false
       - key: WHATSAPP_CLOUD_TOKEN
         sync: false
       - key: WHATSAPP_PHONE_NUMBER_ID
