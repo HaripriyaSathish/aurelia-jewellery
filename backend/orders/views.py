@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.conf import settings
+from django.utils import timezone
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -94,23 +95,34 @@ class VerifyPaymentView(APIView):
             return Response({"success": False, "message": str(e)}, status=status.HTTP_502_BAD_GATEWAY)
 
         cf_status = cf_data.get('order_status', '')
-        order.cashfree_payment_status = cf_status
 
-        if cf_status == 'PAID' and order.status == 'PENDING':
-            order.status = 'PAID'
-
+        if cf_status == 'PAID':
             payments = get_order_payments(order.cashfree_order_id or order.order_number)
             successful_payment = next((p for p in payments if p.get('payment_status') == 'SUCCESS'), None)
-            if successful_payment:
-                order.transaction_id = str(successful_payment.get('cf_payment_id', ''))
-                payment_group = (successful_payment.get('payment_group') or '').replace('_', ' ')
-                order.payment_method = payment_group.title()
+            transaction_id = str(successful_payment.get('cf_payment_id', '')) if successful_payment else ''
+            payment_method = ((successful_payment.get('payment_group') or '').replace('_', ' ').title()) if successful_payment else ''
 
-            send_order_confirmation_email(order)
-        elif cf_status in ('EXPIRED', 'TERMINATED', 'FAILED') and order.status == 'PENDING':
-            order.status = 'FAILED'
-
-        order.save(update_fields=['cashfree_payment_status', 'status', 'transaction_id', 'payment_method', 'updated_at'])
+            # Atomic claim: only the request that actually flips PENDING -> PAID
+            # sends the confirmation email, even if verify is called concurrently
+            # (e.g. a duplicate frontend effect run or a page refresh).
+            claimed = Order.objects.filter(pk=order.pk, status='PENDING').update(
+                status='PAID',
+                cashfree_payment_status=cf_status,
+                transaction_id=transaction_id,
+                payment_method=payment_method,
+                updated_at=timezone.now(),
+            )
+            order.refresh_from_db()
+            if claimed:
+                send_order_confirmation_email(order)
+        elif cf_status in ('EXPIRED', 'TERMINATED', 'FAILED'):
+            Order.objects.filter(pk=order.pk, status='PENDING').update(
+                status='FAILED', cashfree_payment_status=cf_status, updated_at=timezone.now(),
+            )
+            order.refresh_from_db()
+        else:
+            order.cashfree_payment_status = cf_status
+            order.save(update_fields=['cashfree_payment_status', 'updated_at'])
 
         return Response(OrderSerializer(order).data)
 

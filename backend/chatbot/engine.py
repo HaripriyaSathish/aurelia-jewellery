@@ -19,7 +19,7 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
-ORDER_NUMBER_RE = re.compile(r'\bAUR-\d{6}\b', re.IGNORECASE)
+ORDER_NUMBER_RE = re.compile(r'\b(?:AUR|VET)-\d{6}\b', re.IGNORECASE)
 EMAIL_RE = re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]+')
 PHONE_RE = re.compile(r'(\+?\d[\d\s-]{7,14}\d)')
 
@@ -107,7 +107,7 @@ def _track_order_reply(message, context):
 
     if not order_number:
         return {
-            "reply": "Sure — please share your order number (it looks like AUR-123456) so I can check its status.",
+            "reply": "Sure — please share your order number (it looks like VET-123456) so I can check its status.",
             "quick_replies": [],
             "context": {"intent": "track_order"},
         }
